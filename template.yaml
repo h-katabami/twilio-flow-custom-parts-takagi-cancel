@@ -1,0 +1,80 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Takagi-Cancel flow custom parts (SAM)
+
+Parameters:
+  FunctionName:
+    Type: String
+    Default: TwilioCustomParts-Takagi-Cancel
+  RoleName:
+    Type: String
+    Default: TwilioCustomParts-Takagi-Cancel-role
+  TableNameParameterPath:
+    Type: String
+    Default: /takagi-cancel/table-name
+  BusinessHoursStart:
+    Type: String
+    Default: '08:30'
+  BusinessHoursEnd:
+    Type: String
+    Default: '18:00'
+
+Resources:
+  TwilioCustomPartsTakagiCancelRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Ref RoleName
+      Path: /service-role/
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - !Sub arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Policies:
+        - PolicyName: TwilioCustomPartsTakagiCancelDataAccess
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action:
+                  - dynamodb:Query
+                  - dynamodb:GetItem
+                Resource:
+                  - !Sub arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/*
+                  - !Sub arn:${AWS::Partition}:dynamodb:${AWS::Region}:${AWS::AccountId}:table/*/index/*
+              - Effect: Allow
+                Action:
+                  - ssm:GetParameter
+                Resource:
+                  - !Sub arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter${TableNameParameterPath}
+
+  TwilioCustomPartsTakagiCancelFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Ref FunctionName
+      Description: Takagi-Cancel flow custom parts lambda
+      Role: !GetAtt TwilioCustomPartsTakagiCancelRole.Arn
+      CodeUri: lambdas
+      Handler: TwilioCustomParts.lambda_function.lambda_handler
+      Runtime: python3.13
+      Timeout: 10
+      MemorySize: 128
+      Architectures:
+        - x86_64
+      Environment:
+        Variables:
+          TABLE_NAME_PARAMETER_PATH: !Ref TableNameParameterPath
+          BUSINESS_HOURS_START: !Ref BusinessHoursStart
+          BUSINESS_HOURS_END: !Ref BusinessHoursEnd
+
+Outputs:
+  FunctionName:
+    Description: Lambda function name
+    Value: !Ref TwilioCustomPartsTakagiCancelFunction
+  FunctionArn:
+    Description: Lambda function ARN
+    Value: !GetAtt TwilioCustomPartsTakagiCancelFunction.Arn

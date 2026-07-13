@@ -1,0 +1,29 @@
+#JSGF V1.0 SJIS ja;
+
+grammar Cust_CD;
+
+public <Cust_CD> = [<pre>] (<cust_cd> | <unknown>) [<post>];
+
+<pre> = えー|えっと|えーと|えと|<GARBAGE>+;
+<post> = です|<GARBAGE>+;
+
+<unknown> = (わからない | わかりません) {NO};
+
+<cust_cd> = <cust_cd_6> | <cust_cd_7> | <cust_cd_10>;
+
+<cust_cd_6> = <digit> <digit> <digit> <digit> <digit> <digit>;
+<cust_cd_7> = <digit> <digit> <digit> <digit> <digit> <digit> <digit>;
+<cust_cd_10> = <digit> <digit> <digit> <digit> <digit> <digit> <digit> <digit> <digit> <digit>;
+
+
+<digit> =
+    (ぜろ | まる | れー) {0}
+  | (いち) {1}
+  | (に | にー) {2}
+  | (さん) {3}
+  | (よん | しー) {4}
+  | (ご | ごー) {5}
+  | (ろく) {6}
+  | (なな | しち) {7}
+  | (はち) {8}
+  | (きゅー) {9};
