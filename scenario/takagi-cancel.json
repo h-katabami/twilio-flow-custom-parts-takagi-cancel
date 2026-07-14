@@ -16,7 +16,7 @@
     "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
     "grammer": "takagi/cust_cd",
     "branch": {
-      "Yes": "お客様ナンバー照合",
+      "Next": "お客様ナンバー照合",
       "No": "電話番号(照合なし)",
       "Error": "電話番号(照合なし)"
     },

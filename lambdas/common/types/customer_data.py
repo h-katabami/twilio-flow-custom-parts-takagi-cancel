@@ -26,22 +26,6 @@ VARIANT2_SYOYU_CODES = frozenset({SYOYU_KB_RENTAL, SYOYU_KB_DAITO})
 VARIANT3_SYOYU_CODES = frozenset({SYOYU_KB_MINI})
 
 
-def _norm(value):
-    return str(value or "").strip()
-
-
-def is_allowed_syoyu_kb(value):
-    return _norm(value) in ALLOWED_SYOYU_CODES
-
-
-def is_allowed_cust_kb(value):
-    return _norm(value) in ALLOWED_CUST_KB_CODES
-
-
-def is_allowed_item_code(value):
-    return _norm(value).startswith(ALLOWED_ITEM_PREFIXES)
-
-
 def normalize_cust_cd(cust_cd):
     normalized = str(cust_cd or "").strip()
     if len(normalized) == 10:
@@ -54,11 +38,11 @@ def is_eligible_for_auto_cancel(item, matched_count):
         return False
     if matched_count != 1:
         return False
-    if not is_allowed_item_code(item.get("ITEM")):
+    if not str(item.get("ITEM") or "").strip().startswith(ALLOWED_ITEM_PREFIXES):
         return False
-    if not is_allowed_syoyu_kb(item.get("SYOYU_KB")):
+    if str(item.get("SYOYU_KB") or "").strip() not in ALLOWED_SYOYU_CODES:
         return False
-    if not is_allowed_cust_kb(item.get("CUST_KB")):
+    if str(item.get("CUST_KB") or "").strip() not in ALLOWED_CUST_KB_CODES:
         return False
     return True
 
@@ -72,7 +56,7 @@ def is_in_prep_window(item, today):
 
 
 def classify_product_variant(item):
-    syoyu = _norm(item.get("SYOYU_KB"))
+    syoyu = str(item.get("SYOYU_KB") or "").strip()
     if syoyu in VARIANT3_SYOYU_CODES:
         return 3
     if syoyu in VARIANT2_SYOYU_CODES:

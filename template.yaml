@@ -11,7 +11,7 @@ Parameters:
     Default: TwilioCustomParts-Takagi-Cancel-role
   TableNameParameterPath:
     Type: String
-    Default: /takagi-cancel/table-name
+    Default: /dynamodb/takagi/customer-data
   BusinessHoursStart:
     Type: String
     Default: '08:30'
