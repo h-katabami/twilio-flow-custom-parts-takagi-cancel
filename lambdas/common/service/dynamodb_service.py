@@ -9,6 +9,12 @@ class DynamoDBService:
     def get_table_resource(self, table_name):
         return self.dynamodb.Table(table_name)
 
+    def build_key_eq_expression(self, key_name, key_value):
+        return Key(key_name).eq(key_value)
+
+    def build_key_between_expression(self, key_name, start_value, end_value):
+        return Key(key_name).between(start_value, end_value)
+
     def query_latest_record(self, table, key_name, key_value, index_name=None):
         query_kwargs = {
             "KeyConditionExpression": Key(key_name).eq(key_value),

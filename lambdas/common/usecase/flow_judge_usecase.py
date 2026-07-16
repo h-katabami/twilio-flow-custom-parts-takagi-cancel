@@ -10,6 +10,7 @@ from common.service.flow_service import (
 from common.service.logger import info
 from common.service.time_service import get_jst, is_business_hours_now
 from common.types.customer_data import (
+    build_customer_data_payload,
     classify_product_variant,
     is_eligible_for_auto_cancel,
     is_in_prep_window,
@@ -145,6 +146,8 @@ class FinalCheckUseCase:
     def execute(self, event_data):
         repository = CancelFlowRepository()
         item, matched_count = repository.find_customer(event_data)
+        # 通話ログに顧客情報を残す唯一のノード。ダウンロードCSVはここから組み立てる。
+        customer_data = build_customer_data_payload(item)
 
         if not is_eligible_for_auto_cancel(item, matched_count):
             info(
@@ -153,15 +156,15 @@ class FinalCheckUseCase:
                 )
             )
             if is_business_hours_now():
-                return next_response("FailYes")
-            return next_response("FailNo")
+                return next_response("FailYes", customer_data=customer_data)
+            return next_response("FailNo", customer_data=customer_data)
 
         today = get_jst("date")
         variant = classify_product_variant(item)
         prefix = "Yes" if is_in_prep_window(item, today) else "No"
         branch = "{}{}".format(prefix, variant)
         info("最終チェック判定: {}".format(branch))
-        return next_response(branch)
+        return next_response(branch, customer_data=customer_data)
 
 
 class JudgeBusinessHoursUseCase:

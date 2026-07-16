@@ -22,6 +22,7 @@ confirm_changeset = true
 fail_on_empty_changeset = false
 capabilities = "CAPABILITY_IAM CAPABILITY_NAMED_IAM"
 profile = "dev"
+parameter_overrides = "CustomerDataBucketName=twilio.tact-dev.jp DownloadSourceTableName=TestTwilioFlow-MainTable-S5QH2KQ9XG4N"
 
 [prod.deploy.parameters]
 stack_name = "twilio-custom-parts-takagi-cancel"
@@ -32,3 +33,4 @@ confirm_changeset = true
 fail_on_empty_changeset = false
 capabilities = "CAPABILITY_IAM CAPABILITY_NAMED_IAM"
 profile = "prod"
+parameter_overrides = "CustomerDataBucketName=twilio.tactinc.jp DownloadSourceTableName=TwilioFlow-MainTable-TVUGQ4UF046U"

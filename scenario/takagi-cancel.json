@@ -564,7 +564,7 @@
   {
     "id": "お客様ナンバー照合",
     "action": "Api",
-    "name": "TwilioCustomParts-Takagi-Cancel",
+    "name": "TwilioCustomParts-TakagiCancel",
     "method": "custom:lambda",
     "branch": {
       "Yes": "電話番号(照合あり)",
@@ -575,7 +575,7 @@
   {
     "id": "営業時間確認1",
     "action": "Api",
-    "name": "TwilioCustomParts-Takagi-Cancel",
+    "name": "TwilioCustomParts-TakagiCancel",
     "method": "custom:lambda",
     "branch": {
       "Yes": "営業時間確認1転送",
@@ -585,7 +585,7 @@
   {
     "id": "営業時間確認2",
     "action": "Api",
-    "name": "TwilioCustomParts-Takagi-Cancel",
+    "name": "TwilioCustomParts-TakagiCancel",
     "method": "custom:lambda",
     "branch": {
       "Yes": "営業時間確認2転送",
@@ -595,7 +595,7 @@
   {
     "id": "営業時間確認5",
     "action": "Api",
-    "name": "TwilioCustomParts-Takagi-Cancel",
+    "name": "TwilioCustomParts-TakagiCancel",
     "method": "custom:lambda",
     "branch": {
       "Yes": "営業時間確認5転送",
@@ -605,7 +605,7 @@
   {
     "id": "電話番号照合1",
     "action": "Api",
-    "name": "TwilioCustomParts-Takagi-Cancel",
+    "name": "TwilioCustomParts-TakagiCancel",
     "method": "custom:lambda",
     "branch": {
       "Yes": "郵便番号(照合なし)",
@@ -615,7 +615,7 @@
   {
     "id": "営業時間確認6",
     "action": "Api",
-    "name": "TwilioCustomParts-Takagi-Cancel",
+    "name": "TwilioCustomParts-TakagiCancel",
     "method": "custom:lambda",
     "branch": {
       "Yes": "営業時間確認6転送",
@@ -625,7 +625,7 @@
   {
     "id": "営業時間確認3",
     "action": "Api",
-    "name": "TwilioCustomParts-Takagi-Cancel",
+    "name": "TwilioCustomParts-TakagiCancel",
     "method": "custom:lambda",
     "branch": {
       "Yes": "営業時間確認3転送",
@@ -635,7 +635,7 @@
   {
     "id": "三点確認1",
     "action": "Api",
-    "name": "TwilioCustomParts-Takagi-Cancel",
+    "name": "TwilioCustomParts-TakagiCancel",
     "method": "custom:lambda",
     "branch": {
       "Yes": "登録確認NG転送",
@@ -647,7 +647,7 @@
   {
     "id": "生年月日登録確認",
     "action": "Api",
-    "name": "TwilioCustomParts-Takagi-Cancel",
+    "name": "TwilioCustomParts-TakagiCancel",
     "method": "custom:lambda",
     "branch": {
       "Yes": "生年月日確認",
@@ -657,7 +657,7 @@
   {
     "id": "最終チェック",
     "action": "Api",
-    "name": "TwilioCustomParts-Takagi-Cancel",
+    "name": "TwilioCustomParts-TakagiCancel",
     "method": "custom:lambda",
     "branch": {
       "FailYes": "自動受付不可転送",
@@ -673,7 +673,7 @@
   {
     "id": "営業時間確認7",
     "action": "Api",
-    "name": "TwilioCustomParts-Takagi-Cancel",
+    "name": "TwilioCustomParts-TakagiCancel",
     "method": "custom:lambda",
     "branch": {
       "Yes": "営業時間確認7転送",
@@ -683,7 +683,7 @@
   {
     "id": "三点確認2",
     "action": "Api",
-    "name": "TwilioCustomParts-Takagi-Cancel",
+    "name": "TwilioCustomParts-TakagiCancel",
     "method": "custom:lambda",
     "branch": {
       "Yes": "最終チェック",
@@ -693,7 +693,7 @@
   {
     "id": "三点確認3",
     "action": "Api",
-    "name": "TwilioCustomParts-Takagi-Cancel",
+    "name": "TwilioCustomParts-TakagiCancel",
     "method": "custom:lambda",
     "branch": {
       "Yes": "最終チェック",
@@ -703,7 +703,7 @@
   {
     "id": "営業時間確認8",
     "action": "Api",
-    "name": "TwilioCustomParts-Takagi-Cancel",
+    "name": "TwilioCustomParts-TakagiCancel",
     "method": "custom:lambda",
     "branch": {
       "Yes": "営業時間確認8転送",
@@ -713,7 +713,7 @@
   {
     "id": "営業時間確認9",
     "action": "Api",
-    "name": "TwilioCustomParts-Takagi-Cancel",
+    "name": "TwilioCustomParts-TakagiCancel",
     "method": "custom:lambda",
     "branch": {
       "Yes": "営業時間確認9転送",
@@ -723,7 +723,7 @@
   {
     "id": "営業時間確認10",
     "action": "Api",
-    "name": "TwilioCustomParts-Takagi-Cancel",
+    "name": "TwilioCustomParts-TakagiCancel",
     "method": "custom:lambda",
     "branch": {
       "Yes": "営業時間確認10転送",
@@ -734,7 +734,7 @@
   {
     "id": "電話番号照合2",
     "action": "Api",
-    "name": "TwilioCustomParts-Takagi-Cancel",
+    "name": "TwilioCustomParts-TakagiCancel",
     "method": "custom:lambda",
     "branch": {
       "Yes": "郵便番号(照合なし)",
@@ -744,7 +744,7 @@
   {
     "id": "営業時間確認4",
     "action": "Api",
-    "name": "TwilioCustomParts-Takagi-Cancel",
+    "name": "TwilioCustomParts-TakagiCancel",
     "method": "custom:lambda",
     "branch": {
       "Yes": "営業時間確認4転送",
@@ -754,7 +754,7 @@
   {
     "id": "営業時間確認11",
     "action": "Api",
-    "name": "TwilioCustomParts-Takagi-Cancel",
+    "name": "TwilioCustomParts-TakagiCancel",
     "method": "custom:lambda",
     "branch": {
       "Yes": "営業時間確認11転送",

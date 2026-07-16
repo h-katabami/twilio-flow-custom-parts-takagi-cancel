@@ -1,6 +1,25 @@
+from datetime import date, datetime
+from decimal import Decimal
+
 from common.service.time_service import shift_date
 
 PREP_WINDOW_DAYS = 14
+
+# 最終チェックのレスポンスに載せ、通話ログ経由でダウンロードCSVの生成元になる項目。
+CUSTOMER_DATA_LOG_COLUMNS = (
+    "CUST_CD",
+    "KYK_NO",
+    "SW_CUST_KNM",
+    "BIRTH_DT",
+    "POST_CD",
+    "TEL1",
+    "TEL2",
+    "ITEM",
+    "PRECHG_DT",
+    "NEXTCHG_DT",
+    "CUST_KB",
+    "SYOYU_KB",
+)
 
 ALLOWED_ITEM_PREFIXES = ("JC", "JH", "H")
 CUST_KB_REGULAR_MEMBER = "4"
@@ -40,7 +59,7 @@ def is_eligible_for_auto_cancel(item, matched_count):
         return False
     if not str(item.get("ITEM") or "").strip().startswith(ALLOWED_ITEM_PREFIXES):
         return False
-    if str(item.get("SYOYU_KB") or "").strip() not in ALLOWED_SYOYU_CODES:
+    if str(item.get("SYOYU_KB") or "").strip().zfill(2) not in ALLOWED_SYOYU_CODES:
         return False
     if str(item.get("CUST_KB") or "").strip() not in ALLOWED_CUST_KB_CODES:
         return False
@@ -56,9 +75,27 @@ def is_in_prep_window(item, today):
 
 
 def classify_product_variant(item):
-    syoyu = str(item.get("SYOYU_KB") or "").strip()
+    syoyu = str(item.get("SYOYU_KB") or "").strip().zfill(2)
     if syoyu in VARIANT3_SYOYU_CODES:
         return 3
     if syoyu in VARIANT2_SYOYU_CODES:
         return 2
     return 1
+
+
+def _to_log_value(value):
+    # repository が date に変換済みの項目や DynamoDB の Decimal をそのまま返すと
+    # Lambda のレスポンスが JSON 化できずに落ちるため、文字列へ寄せる。
+    if value is None:
+        return ""
+    if isinstance(value, (datetime, date)):
+        return value.strftime("%Y%m%d")
+    if isinstance(value, Decimal):
+        return format(value.normalize(), "f")
+    return str(value).strip()
+
+
+def build_customer_data_payload(item):
+    if not item:
+        return {}
+    return {column: _to_log_value(item.get(column)) for column in CUSTOMER_DATA_LOG_COLUMNS}
