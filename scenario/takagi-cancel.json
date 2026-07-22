@@ -2,6 +2,7 @@
   {
     "id": "start",
     "display_no": "start",
+    "status_checkpoint": "冒頭切断",
     "action": "Record",
     "branch": {
       "Next": "お客様ナンバー"
@@ -11,6 +12,7 @@
   {
     "id": "お客様ナンバー",
     "display_no": "2000",
+    "status_checkpoint": "切断(お客様ナンバー)",
     "action": "Grammer",
     "dev:post_time": 1000,
     "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
@@ -20,13 +22,14 @@
       "No": "電話番号(照合なし)",
       "Error": "電話番号(照合なし)"
     },
-    "text": "まずはじめに、ご登録確認のため、お客様ナンバーをお話しください。\nわからない方は「わからない」とお話しください。\n",
+    "text": "まずはじめに、ご登録確認のため、お客様ナンバーをお話しください。\nわからない方は「わからない」とお話しください。",
     "retry_text": "音声を認識できませんでした。\nもう一度、お客様ナンバーをお話しください。お客様ナンバーは納品書兼請求書を開いた右側のページに記載がございます。\nわからない方は「わからない」とお話しください。\n",
     "retry_over_text": "音声を認識できませんでした。\n"
   },
   {
     "id": "電話番号(照合あり)",
     "display_no": "3000",
+    "status_checkpoint": "ステータス：切断(電話番号1)",
     "action": "Grammer",
     "dev:post_time": 1000,
     "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
@@ -42,20 +45,23 @@
   {
     "id": "営業時間確認1転送",
     "display_no": "3008",
+    "status_checkpoint": "音声認識エラー時間内",
     "action": "OpTransfer",
-    "number": "",
+    "number": "+819078252706",
     "timeout": 30,
     "text": "音声を認識できませんでした。\nここから先は担当者へ転送いたします。\n誠に恐れ入りますが、改めて、ご用件およびお客様情報をお申し出ください。\n"
   },
   {
     "id": "営業時間確認1切電",
     "display_no": "3009",
+    "status_checkpoint": "音声認識エラー時間外",
     "action": "LineOff",
     "text": "音声を認識できませんでした。\n恐れ入りますが、現在営業時間外のため再度おかけ直しください。\nまた、おかけ直しの際には、納品書兼請求書に記載のあるお客様ナンバーやご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。\n"
   },
   {
     "id": "電話番号(照合なし)",
     "display_no": "3100",
+    "status_checkpoint": "ステータス：切断(電話番号2)",
     "action": "Grammer",
     "dev:post_time": 1000,
     "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
@@ -65,20 +71,22 @@
       "Error": "営業時間確認2"
     },
     "text": "それでは、ご登録のお電話番号をお話しください。\n",
-    "retry_text": "",
-    "retry_over_text": ""
+    "retry_text": "音声を認識できませんでした。\nもう一度、ご登録のお電話番号をお話しください。",
+    "retry_over_text": "音声を認識できませんでした。\nここから先は担当者へ転送いたします。\n誠に恐れ入りますが、改めて、ご用件およびお客様情報をお申し出ください。"
   },
   {
     "id": "営業時間確認2転送",
     "display_no": "3108",
+    "status_checkpoint": "音声認識エラー時間内",
     "action": "OpTransfer",
-    "number": "",
+    "number": "+819078252706",
     "timeout": 30,
     "text": "音声を認識できませんでした。\nここから先は担当者へ転送いたします。\n誠に恐れ入りますが、改めて、ご用件およびお客様情報をお申し出ください。\n"
   },
   {
     "id": "営業時間確認2切電",
     "display_no": "3109",
+    "status_checkpoint": "音声認識エラー時間外",
     "action": "LineOff",
     "text": "音声を認識できませんでした。\n恐れ入りますが、現在営業時間外のため再度おかけ直しください。\nまた、おかけ直しの際には、納品書兼請求書に記載のあるお客様ナンバーやご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。\n"
   },
@@ -86,9 +94,9 @@
     "id": "電話番号(2回目)",
     "display_no": "3110",
     "action": "Grammer",
-    "grammer": "takagi/Phonenumber",
-    "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
     "dev:post_time": 1000,
+    "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
+    "grammer": "takagi/Phonenumber",
     "branch": {
       "Next": "電話番号照合2",
       "Error": "営業時間確認3"
@@ -100,38 +108,43 @@
   {
     "id": "営業時間確認3転送",
     "display_no": "3118",
+    "status_checkpoint": "音声認識エラー時間内",
     "action": "OpTransfer",
-    "number": "",
+    "number": "+819078252706",
     "timeout": 30,
     "text": "音声を認識できませんでした。\nここから先は担当者へ転送いたします。\n誠に恐れ入りますが、改めて、ご用件およびお客様情報をお申し出ください。\n"
   },
   {
     "id": "営業時間確認3切電",
     "display_no": "3119",
+    "status_checkpoint": "音声認識エラー時間外",
     "action": "LineOff",
     "text": "音声を認識できませんでした。\n恐れ入りますが、現在営業時間外のため再度おかけ直しください。\nまた、おかけ直しの際には、納品書兼請求書に記載のあるお客様ナンバーやご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。\n"
   },
   {
     "id": "営業時間確認4転送",
     "display_no": "3128",
+    "status_checkpoint": "音声認識エラー時間内",
     "action": "OpTransfer",
-    "number": "",
+    "number": "+819078252706",
     "timeout": 30,
     "text": "お話いただいた内容で登録の確認ができませんでした。\nここから先は担当者へ転送いたします。\n誠に恐れ入りますが、改めて、ご用件およびお客様情報をお申し出ください。\n"
   },
   {
     "id": "営業時間確認4切電",
     "display_no": "3129",
+    "status_checkpoint": "音声認識エラー時間外",
     "action": "LineOff",
     "text": "お話いただいた内容で登録の確認ができませんでした。\n恐れ入りますが、現在営業時間外のため、再度おかけ直しください。また、おかけ直しの際には、納品書兼請求書に記載のあるお客様ナンバーやご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。\n"
   },
   {
     "id": "郵便番号(照合あり)",
     "display_no": "4000",
+    "status_checkpoint": "切断(郵便番号1)",
     "action": "Grammer",
-    "grammer": "takagi/Zipcode",
-    "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
     "dev:post_time": 1000,
+    "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
+    "grammer": "takagi/Zipcode",
     "branch": {
       "Next": "三点確認1",
       "Error": "営業時間確認5"
@@ -143,24 +156,27 @@
   {
     "id": "営業時間確認5転送",
     "display_no": "4008",
+    "status_checkpoint": "音声認識エラー時間内",
     "action": "OpTransfer",
-    "number": "",
+    "number": "+819078252706",
     "timeout": 30,
     "text": "音声を認識できませんでした。\nここから先は担当者へ転送いたします。\n誠に恐れ入りますが、改めて、ご用件およびお客様情報をお申し出ください。"
   },
   {
     "id": "営業時間確認5切電",
     "display_no": "4009",
+    "status_checkpoint": "音声認識エラー時間外",
     "action": "LineOff",
     "text": "お話いただいた内容で登録の確認ができませんでした。\n恐れ入りますが、現在営業時間外のため、再度おかけ直しください。また、おかけ直しの際には、納品書兼請求書に記載のあるお客様ナンバーやご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。\n"
   },
   {
     "id": "郵便番号(照合なし)",
     "display_no": "4100",
+    "status_checkpoint": "切断(郵便番号2)",
     "action": "Grammer",
-    "grammer": "takagi/Zipcode",
-    "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
     "dev:post_time": 1000,
+    "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
+    "grammer": "takagi/Zipcode",
     "branch": {
       "Next": "生年月日登録確認",
       "Error": "営業時間確認6"
@@ -172,38 +188,43 @@
   {
     "id": "営業時間確認6転送",
     "display_no": "4108",
+    "status_checkpoint": "音声認識エラー時間内",
     "action": "OpTransfer",
-    "number": "",
+    "number": "+819078252706",
     "timeout": 30,
     "text": "音声を認識できませんでした。\nここから先は担当者へ転送いたします。\n誠に恐れ入りますが、改めて、ご用件およびお客様情報をお申し出ください。\n\n"
   },
   {
     "id": "営業時間確認6切電",
     "display_no": "4109",
+    "status_checkpoint": "音声認識エラー時間外",
     "action": "LineOff",
     "text": "音声を認識できませんでした。\n恐れ入りますが、現在営業時間外のため再度おかけ直しください。\nまた、おかけ直しの際には、納品書兼請求書に記載のあるお客様ナンバーやご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。\n"
   },
   {
     "id": "登録確認NG転送",
     "display_no": "5008",
+    "status_checkpoint": "特定NG時間内",
     "action": "OpTransfer",
-    "number": "",
+    "number": "+819078252706",
     "timeout": 30,
     "text": "お話いただいた内容で登録の確認ができませんでした。\nここから先は担当者へ転送いたします。\n誠に恐れ入りますが、改めて、ご用件およびお客様情報をお申し出ください。\n"
   },
   {
     "id": "登録確認NG切電",
     "display_no": "5009",
+    "status_checkpoint": "特定NG時間外",
     "action": "LineOff",
     "text": "お話いただいた内容で登録の確認ができませんでした。\n恐れ入りますが、現在営業時間外のため、再度おかけ直しください。また、おかけ直しの際には、納品書兼請求書に記載のあるお客様ナンバーやご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。\n"
   },
   {
     "id": "生年月日確認",
     "display_no": "5100",
+    "status_checkpoint": "切断（生年月日）",
     "action": "Grammer",
-    "grammer": "takagi/birthday",
-    "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
     "dev:post_time": 1000,
+    "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
+    "grammer": "takagi/birthday",
     "branch": {
       "Next": "三点確認2",
       "Error": "営業時間確認7"
@@ -215,24 +236,27 @@
   {
     "id": "営業時間確認7転送",
     "display_no": "5108",
+    "status_checkpoint": "音声認識エラー時間内",
     "action": "OpTransfer",
-    "number": "",
+    "number": "+819078252706",
     "timeout": 30,
     "text": "音声を認識できませんでした。\nここから先は担当者へ転送いたします。\n誠に恐れ入りますが、改めて、ご用件およびお客様情報をお申し出ください。\n"
   },
   {
     "id": "営業時間確認7切電",
     "display_no": "5109",
+    "status_checkpoint": "音声認識エラー時間外",
     "action": "LineOff",
     "text": "音声を認識できませんでした。\n恐れ入りますが、現在営業時間外のため、再度おかけ直しください。また、おかけ直しの際には、納品書兼請求書に記載のあるお客様ナンバーやご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。\n"
   },
   {
     "id": "名前確認",
     "display_no": "5200",
+    "status_checkpoint": "切断（氏名）",
     "action": "Grammer",
-    "grammer": "takagi/Name",
-    "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
     "dev:post_time": 1000,
+    "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
+    "grammer": "takagi/Name",
     "branch": {
       "Next": "三点確認3",
       "Error": "営業時間確認8"
@@ -244,52 +268,59 @@
   {
     "id": "営業時間確認8転送",
     "display_no": "5208",
+    "status_checkpoint": "音声認識エラー時間内",
     "action": "OpTransfer",
-    "number": "",
+    "number": "+819078252706",
     "timeout": 30,
     "text": "音声を認識できませんでした。\nここから先は担当者へ転送いたします。\n誠に恐れ入りますが、改めて、ご用件およびお客様情報をお申し出ください。\n"
   },
   {
     "id": "営業時間確認8切電",
     "display_no": "5209",
+    "status_checkpoint": "音声認識エラー時間外",
     "action": "LineOff",
     "text": "音声を認識できませんでした。\n恐れ入りますが、現在営業時間外のため、再度おかけ直しください。また、おかけ直しの際には、納品書兼請求書に記載のあるお客様ナンバーやご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。\n"
   },
   {
     "id": "営業時間確認9転送",
     "display_no": "5218",
+    "status_checkpoint": "特定NG時間内",
     "action": "OpTransfer",
-    "number": "",
+    "number": "+819078252706",
     "timeout": 30,
     "text": "お話いただいた内容で登録の確認ができませんでした。\nここから先は担当者へ転送いたします。\n誠に恐れ入りますが、改めて、ご用件およびお客様情報をお申し出ください。\n"
   },
   {
     "id": "営業時間確認9切電",
     "display_no": "5219",
+    "status_checkpoint": "特定NG時間外",
     "action": "LineOff",
     "text": "お話いただいた内容で登録の確認ができませんでした。\n恐れ入りますが、現在営業時間外のため、再度おかけ直しください。また、おかけ直しの際には、納品書兼請求書に記載のあるお客様ナンバーやご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。\n"
   },
   {
     "id": "自動受付不可転送",
     "display_no": "6008",
+    "status_checkpoint": "受付NG時間内",
     "action": "OpTransfer",
-    "number": "",
+    "number": "+819078252706",
     "timeout": 30,
     "text": "自動受付ができないため、担当者へ転送いたします。誠に恐れ入りますが、改めてご用件およびお客様情報をお申し出ください。\n"
   },
   {
     "id": "自動受付不可切電",
     "display_no": "6009",
+    "status_checkpoint": "受付NG時間外",
     "action": "LineOff",
     "text": "自動受付ができない契約内容でございます。\n恐れ入りますが、現在営業時間外のため、再度8時30分～18時の間でおかけ直しください。\nお電話ありがとうございました。\n"
   },
   {
     "id": "発送準備中1",
     "display_no": "7100",
+    "status_checkpoint": "切断（持ち家・大阪ガス)",
     "action": "Grammer",
-    "grammer": "takagi/YesNo",
-    "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
     "dev:post_time": 1000,
+    "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
+    "grammer": "takagi/YesNo",
     "branch": {
       "Yes": "発送準備中1エンディング",
       "No": "発送準備中1キャンセル",
@@ -308,29 +339,32 @@
   {
     "id": "発送準備中1エラー",
     "display_no": "7129",
+    "status_checkpoint": "音声認識エラー",
     "action": "LineOff",
     "text": "音声を認識できませんでした。\nそのため、解約の受付を中止します。\n解約をご希望の際はフリーコールまでご連絡ください。\nお電話ありがとうございました。\n"
   },
   {
     "id": "発送準備中1エンディング",
     "display_no": "7199",
+    "status_checkpoint": "対応完了",
     "action": "LineOff",
     "text": "このお電話で解約の受付をいたしました。\n\n解約後の案内として、3点案内がございます。\n1つ目に、お引越し時には、蛇口から浄水カートリッジを取り外していただくようお願いいたします。\n2つ目に、「MeZutto takagi」にご登録のお客様は、解約後も引き続きご利用いただけます。\n不要な場合は、「MeZutto takagi（読み：ミズットタカギ）」から退会の手続きをお願いいたします。\n3つ目に、これまでご利用いただいた感謝として、引越し先でご検討しやすい後付けタイプの浄水器miniNeoを特別価格でご案内しております。\nパンフレットを郵送にて2週間程度でお送りしますので、引っ越し先でのご検討をお願いいたします。\n\n案内は、以上です。ここまでお時間をいただきありがとうございました。\nまた、これまで浄水器をご利用いただきありがとうございました。\n機会がございましたら、またのご利用をお待ちしております。\n"
   },
   {
     "id": "発送準備中2",
     "display_no": "7200",
+    "status_checkpoint": "切断（賃貸・大東)",
     "action": "Grammer",
-    "grammer": "takagi/YesNo",
-    "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
     "dev:post_time": 1000,
+    "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
+    "grammer": "takagi/YesNo",
     "branch": {
       "Yes": "発送準備中2エンディング",
       "No": "発送準備中2キャンセル",
       "Error": "発送準備中2エラー"
     },
     "text": "ご登録の確認ができました。\n次回、{最終チェック[next_exchange_date]}交換予定分は発送準備中のため、停止ができかねます。\nそのため、次回分の発送をもって、定期お届けサービスの解約手続きをうけたまわります。\nこのまま解約手続きを進めてよろしいですか。\n「はい」か「いいえ」でお話しください。\n",
-    "retry_text": "",
+    "retry_text": "音声を認識できませんでした。",
     "retry_over_text": ""
   },
   {
@@ -342,22 +376,25 @@
   {
     "id": "発送準備中2エラー",
     "display_no": "7229",
+    "status_checkpoint": "音声認識エラー",
     "action": "LineOff",
     "text": "音声を認識できませんでした。\nそのため、解約の受付を中止します。\n解約をご希望の際はフリーコールまでご連絡ください。\nお電話ありがとうございました。\n"
   },
   {
     "id": "発送準備中2エンディング",
     "display_no": "7299",
+    "status_checkpoint": "対応完了",
     "action": "LineOff",
     "text": "このお電話で解約の受付をいたしました。\n\n解約後の案内として、3点案内がございます。\n1つ目に、お引越し時には、蛇口から浄水カートリッジを取り外していただくようお願いいたします。\n2つ目に、「MeZutto takagi」にご登録のお客様は、解約後も引き続きご利用いただけます。\n不要な場合は、「MeZutto takagi（読み：ミズットタカギ）」から退会の手続きをお願いいたします。\n3つ目に、これまでご利用いただいた感謝として、引越し先でご検討しやすい後付けタイプの浄水器miniNeoを特別価格でご案内しております。\nパンフレットを郵送にて2週間程度でお送りしますので、引っ越し先でのご検討をお願いいたします。\n\n案内は、以上です。ここまでお時間をいただきありがとうございました。\nまた、これまで浄水器をご利用いただきありがとうございました。\n機会がございましたら、またのご利用をお待ちしております。\n"
   },
   {
     "id": "発送準備中3",
     "display_no": "7300",
+    "status_checkpoint": "切断（mini)",
     "action": "Grammer",
-    "grammer": "takagi/YesNo",
-    "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
     "dev:post_time": 1000,
+    "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
+    "grammer": "takagi/YesNo",
     "branch": {
       "Yes": "発送準備中3追加確認",
       "No": "営業時間確認10",
@@ -370,20 +407,23 @@
   {
     "id": "営業時間確認10転送",
     "display_no": "7318",
+    "status_checkpoint": "mini利用時間内",
     "action": "OpTransfer",
-    "number": "",
+    "number": "+819078252706",
     "timeout": 30,
     "text": "ここから先は担当者へ転送いたします。\n誠に恐れ入りますが、改めて、ご用件およびお客様情報をお申し出ください。\n"
   },
   {
     "id": "営業時間確認10切電",
     "display_no": "7319",
+    "status_checkpoint": "mini利用時間外",
     "action": "LineOff",
     "text": "恐れ入りますが、現在営業時間外のため、再度おかけ直しください。また、おかけ直しの際には、納品書兼請求書に記載のあるお客様ナンバーやご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。\n"
   },
   {
     "id": "発送準備中3エラー1",
     "display_no": "7329",
+    "status_checkpoint": "音声認識エラー",
     "action": "LineOff",
     "text": "音声を認識できませんでした。\nそのため、解約の受付を中止します。\n解約をご希望の際はフリーコールまでご連絡ください。\nお電話ありがとうございました。\n"
   },
@@ -391,9 +431,9 @@
     "id": "発送準備中3追加確認",
     "display_no": "7400",
     "action": "Grammer",
-    "grammer": "takagi/YesNo",
-    "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
     "dev:post_time": 1000,
+    "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
+    "grammer": "takagi/YesNo",
     "branch": {
       "Yes": "発送準備中3エンディング",
       "No": "発送準備中3キャンセル",
@@ -412,22 +452,25 @@
   {
     "id": "発送準備中3エラー2",
     "display_no": "7429",
+    "status_checkpoint": "音声認識エラー",
     "action": "LineOff",
     "text": "音声を認識できませんでした。\nそのため、解約の受付を中止します。\n解約をご希望の際はフリーコールまでご連絡ください。\nお電話ありがとうございました。\n"
   },
   {
     "id": "発送準備中3エンディング",
     "display_no": "7499",
+    "status_checkpoint": "対応完了",
     "action": "LineOff",
     "text": "このお電話で解約の受付をいたしました。\n\n解約後の案内として、3点案内がございます。\n1つ目に、お引越し時には、蛇口から浄水カートリッジを取り外していただくようお願いいたします。\n2つ目に、「MeZutto takagi」にご登録のお客様は、解約後も引き続きご利用いただけます。\n不要な場合は、「MeZutto takagi（読み：ミズットタカギ）」から退会の手続きをお願いいたします。\n3つ目に、これまでご利用いただいた感謝として、引越し先でご検討しやすい後付けタイプの浄水器miniNeoを特別価格でご案内しております。\nパンフレットを郵送にて2週間程度でお送りしますので、引っ越し先でのご検討をお願いいたします。\n\n案内は、以上です。ここまでお時間をいただきありがとうございました。\nまた、これまで浄水器をご利用いただきありがとうございました。\n機会がございましたら、またのご利用をお待ちしております。\n"
   },
   {
     "id": "解約1",
     "display_no": "8000",
+    "status_checkpoint": "切断（持ち家・大阪ガス)",
     "action": "Grammer",
-    "grammer": "takagi/YesNo",
-    "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
     "dev:post_time": 1000,
+    "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
+    "grammer": "takagi/YesNo",
     "branch": {
       "Yes": "解約1エンディング",
       "No": "解約1キャンセル",
@@ -446,6 +489,7 @@
   {
     "id": "解約1エラー",
     "display_no": "8029",
+    "status_checkpoint": "音声認識エラー",
     "action": "LineOff",
     "text": "音声を認識できませんでした。\nそのため、解約の受付を中止します。\n解約をご希望の際はフリーコールまでご連絡ください。\nお電話ありがとうございました。\n",
     "retry_text": ""
@@ -453,16 +497,18 @@
   {
     "id": "解約1エンディング",
     "display_no": "8099",
+    "status_checkpoint": "対応完了",
     "action": "LineOff",
     "text": "このお電話で解約の受付をいたしました。\n\n解約後の案内として、3点案内がございます。\n1つ目に、お引越し時には、蛇口から浄水カートリッジを取り外していただくようお願いいたします。\n2つ目に、「MeZutto takagi」にご登録のお客様は、解約後も引き続きご利用いただけます。\n不要な場合は、「MeZutto takagi（読み：ミズットタカギ）」から退会の手続きをお願いいたします。\n3つ目に、これまでご利用いただいた感謝として、引越し先でご検討しやすい後付けタイプの浄水器miniNeoを特別価格でご案内しております。\nパンフレットを郵送にて2週間程度でお送りしますので、引っ越し先でのご検討をお願いいたします。\n\n案内は、以上です。ここまでお時間をいただきありがとうございました。\nまた、これまで浄水器をご利用いただきありがとうございました。\n機会がございましたら、またのご利用をお待ちしております。\n"
   },
   {
     "id": "解約2",
     "display_no": "8100",
+    "status_checkpoint": "切断(賃貸・大東)",
     "action": "Grammer",
-    "grammer": "takagi/YesNo",
-    "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
     "dev:post_time": 1000,
+    "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
+    "grammer": "takagi/YesNo",
     "branch": {
       "Yes": "解約2エンディング",
       "No": "解約2キャンセル",
@@ -481,6 +527,7 @@
   {
     "id": "解約2エラー",
     "display_no": "8129",
+    "status_checkpoint": "音声認識エラー",
     "action": "LineOff",
     "text": "音声を認識できませんでした。\nそのため、解約の受付を中止します。\n解約をご希望の際はフリーコールまでご連絡ください。\nお電話ありがとうございました。\n",
     "retry_text": ""
@@ -488,16 +535,18 @@
   {
     "id": "解約2エンディング",
     "display_no": "8199",
+    "status_checkpoint": "対応完了",
     "action": "LineOff",
     "text": "このお電話で解約の受付をいたしました。\n\n解約後の案内として、3点案内がございます。\n1つ目に、お引越し時には、蛇口から浄水カートリッジを取り外していただくようお願いいたします。\n2つ目に、「MeZutto takagi」にご登録のお客様は、解約後も引き続きご利用いただけます。\n不要な場合は、「MeZutto takagi（読み：ミズットタカギ）」から退会の手続きをお願いいたします。\n3つ目に、これまでご利用いただいた感謝として、引越し先でご検討しやすい後付けタイプの浄水器miniNeoを特別価格でご案内しております。\nパンフレットを郵送にて2週間程度でお送りしますので、引っ越し先でのご検討をお願いいたします。\n\n案内は、以上です。ここまでお時間をいただきありがとうございました。\nまた、これまで浄水器をご利用いただきありがとうございました。\n機会がございましたら、またのご利用をお待ちしております。\n"
   },
   {
     "id": "解約3",
     "display_no": "8200",
+    "status_checkpoint": "切断(mini)",
     "action": "Grammer",
-    "grammer": "takagi/YesNo",
-    "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
     "dev:post_time": 1000,
+    "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
+    "grammer": "takagi/YesNo",
     "branch": {
       "Yes": "解約3追加確認",
       "No": "営業時間確認11",
@@ -510,20 +559,23 @@
   {
     "id": "営業時間確認11転送",
     "display_no": "8218",
+    "status_checkpoint": "mini利用時間内",
     "action": "OpTransfer",
-    "number": "",
+    "number": "+819078252706",
     "timeout": 30,
     "text": "ここから先は担当者へ転送いたします。\n誠に恐れ入りますが、改めて、ご用件およびお客様情報をお申し出ください。\n"
   },
   {
     "id": "営業時間確認11切電",
     "display_no": "8219",
+    "status_checkpoint": "mini利用時間外",
     "action": "LineOff",
     "text": "恐れ入りますが、現在営業時間外のため、再度おかけ直しください。また、おかけ直しの際には、納品書兼請求書に記載のあるお客様ナンバーやご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。\n"
   },
   {
     "id": "解約3エラー1",
     "display_no": "8229",
+    "status_checkpoint": "音声認識エラー",
     "action": "LineOff",
     "text": "音声を認識できませんでした。\nそのため、解約の受付を中止します。\n解約をご希望の際はフリーコールまでご連絡ください。\nお電話ありがとうございました。\n"
   },
@@ -531,9 +583,9 @@
     "id": "解約3追加確認",
     "display_no": "8300",
     "action": "Grammer",
-    "grammer": "takagi/YesNo",
-    "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
     "dev:post_time": 1000,
+    "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
+    "grammer": "takagi/YesNo",
     "branch": {
       "Yes": "解約3エンディング",
       "No": "解約3キャンセル",
@@ -552,14 +604,16 @@
   {
     "id": "解約3エラー2",
     "display_no": "8329",
+    "status_checkpoint": "音声認識エラー",
     "action": "LineOff",
     "text": "音声を認識できませんでした。\nそのため、解約の受付を中止します。\n解約をご希望の際はフリーコールまでご連絡ください。\nお電話ありがとうございました。\n"
   },
   {
     "id": "解約3エンディング",
     "display_no": "8399",
+    "status_checkpoint": "対応完了",
     "action": "LineOff",
-    "text": "このお電話で解約の受付をいたしました。\n\n解約後の案内として、3点案内がございます。\n1つ目に、お引越し時には、蛇口から浄水カートリッジを取り外していただくようお願いいたします。\n2つ目に、「MeZutto takagi」にご登録のお客様は、解約後も引き続きご利用いただけます。\n不要な場合は、「MeZutto takagi（読み：ミズットタカギ）」から退会の手続きをお願いいたします。\n3つ目に、これまでご利用いただいた感謝として、引越し先でご検討しやすい後付けタイプの浄水器miniNeoを特別価格でご案内しております。\nパンフレットを郵送にて2週間程度でお送りしますので、引っ越し先でのご検討をお願いいたします。\n\n案内は、以上です。ここまでお時間をいただきありがとうございました。\nまた、これまで浄水器をご利用いただきありがとうございました。\n機会がございましたら、またのご利用をお待ちしております。"
+    "text": "このお電話で解約の受付をいたしました。\n\n解約後の案内として、3点案内がございます。\n1つ目に、お引越し時には、蛇口から浄水カートリッジを取り外していただくようお願いいたします。\n2つ目に、「MeZutto takagi」にご登録のお客様は、解約後も引き続きご利用いただけます。\n不要な場合は、「MeZutto takagi（読み：ミズットタカギ）」から退会の手続きをお願いいたします。\n3つ目に、これまでご利用いただいた感謝として、引越し先でご検討しやすい後付けタイプの浄水器miniNeoを特別価格でご案内しております。\nパンフレットを郵送にて2週間程度でお送りしますので、引っ越し先でのご検討をお願いいたします。\n\n案内は、以上です。ここまでお時間をいただきありがとうございました。\nまた、これまで浄水器をご利用いただきありがとうございました。\n機会がございましたら、またのご利用をお待ちしております。\n"
   },
   {
     "id": "お客様ナンバー照合",
@@ -660,14 +714,14 @@
     "name": "TwilioCustomParts-TakagiCancel",
     "method": "custom:lambda",
     "branch": {
-      "FailYes": "自動受付不可転送",
-      "FailNo": "自動受付不可切電",
-      "Yes1": "発送準備中1",
-      "Yes2": "発送準備中2",
-      "Yes3": "発送準備中3",
-      "No1": "解約1",
       "No2": "解約2",
-      "No3": "解約3"
+      "No1": "解約1",
+      "Yes2": "発送準備中2",
+      "Yes1": "発送準備中1",
+      "No3": "解約3",
+      "FailNo": "自動受付不可切電",
+      "Yes3": "発送準備中3",
+      "FailYes": "自動受付不可転送"
     }
   },
   {
