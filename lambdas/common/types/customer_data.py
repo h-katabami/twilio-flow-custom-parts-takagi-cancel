@@ -1,7 +1,7 @@
 from datetime import date, datetime
 from decimal import Decimal
 
-from common.service.time_service import shift_date
+from common.service.time_service import format_date_to_speech, shift_date
 
 PREP_WINDOW_DAYS = 14
 
@@ -99,3 +99,14 @@ def build_customer_data_payload(item):
     if not item:
         return {}
     return {column: _to_log_value(item.get(column)) for column in CUSTOMER_DATA_LOG_COLUMNS}
+
+
+def build_speech_date_payload(item):
+    # シナリオ側の {最終チェック[next_exchange_date]} 等で読み上げる日付。
+    # 該当データがない場合も、キー自体は返して未展開の {...} が読まれないようにする。
+    if not item:
+        item = {}
+    return {
+        "next_exchange_date": format_date_to_speech(item.get("NEXTCHG_DT")),
+        "previous_shipping_date": format_date_to_speech(item.get("PRECHG_DT")),
+    }

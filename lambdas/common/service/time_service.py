@@ -1,5 +1,5 @@
 import os
-from datetime import datetime, time, timedelta
+from datetime import date, datetime, time, timedelta
 from zoneinfo import ZoneInfo
 
 JST = ZoneInfo("Asia/Tokyo")
@@ -75,6 +75,14 @@ def parse_text_to_date(value, fmt=None, out_fmt=None):
     if out_fmt is not None:
         return parsed.strftime(out_fmt)
     return parsed.date()
+
+
+def format_date_to_speech(value):
+    # 読み上げ用に「2026年8月9日」形式へ。ゼロ埋めすると「ゼロハチ月」と読まれるため付けない。
+    parsed = value if isinstance(value, date) else parse_text_to_date(value)
+    if not parsed:
+        return ""
+    return "{}年{}月{}日".format(parsed.year, parsed.month, parsed.day)
 
 
 def shift_date(base_date, days=0, years=0):
