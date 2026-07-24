@@ -5,12 +5,12 @@
     "status_checkpoint": "冒頭切断",
     "action": "Record",
     "branch": {
-      "Next": "お客様ナンバー"
+      "Next": "お客様ナンバーヒアリング"
     },
-    "text": "ここからは自動音声サービスで解約の受け付けを行います。\nガイダンスに従って、ピッという電子音の後にお話しください。"
+    "text": "<vtml_speed value=\"100\">ここからは<vtml_pause time=\"100\"/>自動音声サービスで<vtml_pause time=\"100\"/>解約の受け付けを行います。ガイダンスに従って、ピッという電子音の後にお話しください。</vtml_speed>"
   },
   {
-    "id": "お客様ナンバー",
+    "id": "お客様ナンバーヒアリング",
     "display_no": "2000",
     "status_checkpoint": "切断(お客様ナンバー)",
     "action": "Grammer",
@@ -19,15 +19,15 @@
     "grammer": "takagi/cust_cd",
     "branch": {
       "Next": "お客様ナンバー照合",
-      "No": "電話番号(照合なし)",
-      "Error": "電話番号(照合なし)"
+      "No": "電話番号(2)ヒアリング",
+      "Error": "電話番号(2)ヒアリング"
     },
-    "text": "まずはじめに、ご登録確認のため、お客様ナンバーをお話しください。\nわからない方は「わからない」とお話しください。",
-    "retry_text": "音声を認識できませんでした。\nもう一度、お客様ナンバーをお話しください。お客様ナンバーは納品書兼請求書を開いた右側のページに記載がございます。\nわからない方は「わからない」とお話しください。\n",
-    "retry_over_text": "音声を認識できませんでした。\n"
+    "text": "<vtml_speed value=\"100\">まずはじめに、ご登録確認のため、お客様ナンバーをお話しください。わからない方は<vtml_pause time=\"200\"/>「わからない」とお話しください。</vtml_speed>",
+    "retry_text": "<vtml_speed value=\"100\">音声を認識できませんでした。もう一度、お客様ナンバーをお話しください。お客様ナンバーは<vtml_pause time=\"200\"/><vtml_speed value=\"95\">納品書兼請求書</vtml_speed>を開いた<vtml_pause time=\"100\"/>右側のページに記載がございます。わからない方は<vtml_pause time=\"200\"/>「わからない」とお話しください。</vtml_speed>",
+    "retry_over_text": "<vtml_speed value=\"100\">音声を認識できませんでした。</vtml_speed>"
   },
   {
-    "id": "電話番号(照合あり)",
+    "id": "電話番号(1)ヒアリング",
     "display_no": "3000",
     "status_checkpoint": "ステータス：切断(電話番号1)",
     "action": "Grammer",
@@ -35,11 +35,11 @@
     "dev:beep": "https://s3.amazonaws.com/voice.tactinc.jp/static/tact/1_shortened.wav",
     "grammer": "takagi/Phonenumber",
     "branch": {
-      "Next": "郵便番号(照合あり)",
+      "Next": "郵便番号(1)ヒアリング",
       "Error": "営業時間確認1"
     },
-    "text": "続いて、ご登録のお電話番号をお話しください。\n",
-    "retry_text": "音声を認識できませんでした。\nもう一度、ご登録のお電話番号をお話しください。\n",
+    "text": "<vtml_speed value=\"100\">続いて、ご登録の<vtml_break level=\"0\"/>お電話番号をお話しください。</vtml_speed>",
+    "retry_text": "<vtml_speed value=\"100\">音声を認識できませんでした。もう一度、ご登録の<vtml_break level=\"0\"/>お電話番号をお話しください。</vtml_speed>",
     "retry_over_text": ""
   },
   {
@@ -49,17 +49,17 @@
     "action": "OpTransfer",
     "number": "+819078252706",
     "timeout": 30,
-    "text": "音声を認識できませんでした。\nここから先は担当者へ転送いたします。\n誠に恐れ入りますが、改めて、ご用件およびお客様情報をお申し出ください。\n"
+    "text": "<vtml_speed value=\"100\">音声を認識できませんでした。<vtml_phoneme alphabet=\"x-pentax\" ph=\"ココカラ/サキワ[普通名詞]\">ここから先は</vtml_phoneme><vtml_pause time=\"100\"/>担当者へ転送いたします。誠に恐れ入りますが、改めて、ご用件および<vtml_pause time=\"100\"/>お客様情報をお申し出ください。</vtml_speed>\n"
   },
   {
     "id": "営業時間確認1切電",
     "display_no": "3009",
     "status_checkpoint": "音声認識エラー時間外",
     "action": "LineOff",
-    "text": "音声を認識できませんでした。\n恐れ入りますが、現在営業時間外のため再度おかけ直しください。\nまた、おかけ直しの際には、納品書兼請求書に記載のあるお客様ナンバーやご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。\n"
+    "text": "<vtml_speed value=\"100\">音声を認識できませんでした。恐れ入りますが、現在<vtml_pause time=\"200\"/>営業時間外のため<vtml_pause time=\"200\"/>再度おかけ直しください。また、おかけ直しの際には、<vtml_speed value=\"95\">納品書兼請求書</vtml_speed>に記載のある<vtml_pause time=\"100\"/>お客様ナンバーや<vtml_pause time=\"100\"/>ご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。</vtml_speed>\n"
   },
   {
-    "id": "電話番号(照合なし)",
+    "id": "電話番号(2)ヒアリング",
     "display_no": "3100",
     "status_checkpoint": "ステータス：切断(電話番号2)",
     "action": "Grammer",
@@ -70,9 +70,9 @@
       "Next": "電話番号照合1",
       "Error": "営業時間確認2"
     },
-    "text": "それでは、ご登録のお電話番号をお話しください。\n",
-    "retry_text": "音声を認識できませんでした。\nもう一度、ご登録のお電話番号をお話しください。",
-    "retry_over_text": "音声を認識できませんでした。\nここから先は担当者へ転送いたします。\n誠に恐れ入りますが、改めて、ご用件およびお客様情報をお申し出ください。"
+    "text": "<vtml_speed value=\"100\">それでは、ご登録の<vtml_break level=\"0\"/>お電話番号をお話しください。</vtml_speed>",
+    "retry_text": "<vtml_speed value=\"100\">音声を認識できませんでした。もう一度、ご登録の<vtml_break level=\"0\"/>お電話番号をお話しください。</vtml_speed>",
+    "retry_over_text": ""
   },
   {
     "id": "営業時間確認2転送",
@@ -81,17 +81,17 @@
     "action": "OpTransfer",
     "number": "+819078252706",
     "timeout": 30,
-    "text": "音声を認識できませんでした。\nここから先は担当者へ転送いたします。\n誠に恐れ入りますが、改めて、ご用件およびお客様情報をお申し出ください。\n"
+    "text": "<vtml_speed value=\"100\">音声を認識できませんでした。<vtml_phoneme alphabet=\"x-pentax\" ph=\"ココカラ/サキワ[普通名詞]\">ここから先は</vtml_phoneme><vtml_pause time=\"100\"/>担当者へ転送いたします。誠に恐れ入りますが、改めて、ご用件および<vtml_pause time=\"100\"/>お客様情報をお申し出ください。</vtml_speed>\n"
   },
   {
     "id": "営業時間確認2切電",
     "display_no": "3109",
     "status_checkpoint": "音声認識エラー時間外",
     "action": "LineOff",
-    "text": "音声を認識できませんでした。\n恐れ入りますが、現在営業時間外のため再度おかけ直しください。\nまた、おかけ直しの際には、納品書兼請求書に記載のあるお客様ナンバーやご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。\n"
+    "text": "<vtml_speed value=\"100\">音声を認識できませんでした。恐れ入りますが、現在<vtml_pause time=\"200\"/>営業時間外のため<vtml_pause time=\"200\"/>再度おかけ直しください。また、おかけ直しの際には、<vtml_speed value=\"95\">納品書兼請求書</vtml_speed>に記載のある<vtml_pause time=\"100\"/>お客様ナンバーや<vtml_pause time=\"100\"/>ご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。</vtml_speed>\n"
   },
   {
-    "id": "電話番号(2回目)",
+    "id": "電話番号再ヒアリング",
     "display_no": "3110",
     "action": "Grammer",
     "dev:post_time": 1000,
@@ -101,8 +101,8 @@
       "Next": "電話番号照合2",
       "Error": "営業時間確認3"
     },
-    "text": "お話いただいた電話番号は登録に該当がございませんでした。\nその他にお心あたりのある電話番号をお話ください。\n",
-    "retry_text": "音声を認識できませんでした。\nもう一度、ご登録のお電話番号をお話しください。\n",
+    "text": "<vtml_speed value=\"100\"><vtml_phoneme alphabet=\"x-pentax\" ph=\"オハナシイタダイタ[普通名詞]\">お話いただいた</vtml_phoneme>電話番号は<vtml_pause time=\"200\"/>登録に該当がございませんでした。<vtml_phoneme alphabet=\"x-pentax\" ph=\"ソノ^ホカ[普通名詞]\">その他</vtml_phoneme>に<vtml_pause time=\"100\"/>お心あたりのある電話番号をお話ください。</vtml_speed>",
+    "retry_text": "<vtml_speed value=\"100\">音声を認識できませんでした。もう一度、ご登録の<vtml_break level=\"0\"/>お電話番号をお話しください。</vtml_speed>",
     "retry_over_text": ""
   },
   {
@@ -112,14 +112,14 @@
     "action": "OpTransfer",
     "number": "+819078252706",
     "timeout": 30,
-    "text": "音声を認識できませんでした。\nここから先は担当者へ転送いたします。\n誠に恐れ入りますが、改めて、ご用件およびお客様情報をお申し出ください。\n"
+    "text": "<vtml_speed value=\"100\">音声を認識できませんでした。<vtml_phoneme alphabet=\"x-pentax\" ph=\"ココカラ/サキワ[普通名詞]\">ここから先は</vtml_phoneme><vtml_pause time=\"100\"/>担当者へ転送いたします。誠に恐れ入りますが、改めて、ご用件および<vtml_pause time=\"100\"/>お客様情報をお申し出ください。</vtml_speed>\n"
   },
   {
     "id": "営業時間確認3切電",
     "display_no": "3119",
     "status_checkpoint": "音声認識エラー時間外",
     "action": "LineOff",
-    "text": "音声を認識できませんでした。\n恐れ入りますが、現在営業時間外のため再度おかけ直しください。\nまた、おかけ直しの際には、納品書兼請求書に記載のあるお客様ナンバーやご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。\n"
+    "text": "<vtml_speed value=\"100\">音声を認識できませんでした。恐れ入りますが、現在<vtml_pause time=\"200\"/>営業時間外のため<vtml_pause time=\"200\"/>再度おかけ直しください。また、おかけ直しの際には、<vtml_speed value=\"95\">納品書兼請求書</vtml_speed>に記載のある<vtml_pause time=\"100\"/>お客様ナンバーや<vtml_pause time=\"100\"/>ご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。</vtml_speed>\n"
   },
   {
     "id": "営業時間確認4転送",
@@ -128,17 +128,17 @@
     "action": "OpTransfer",
     "number": "+819078252706",
     "timeout": 30,
-    "text": "お話いただいた内容で登録の確認ができませんでした。\nここから先は担当者へ転送いたします。\n誠に恐れ入りますが、改めて、ご用件およびお客様情報をお申し出ください。\n"
+    "text": "<vtml_speed value=\"100\"><vtml_phoneme alphabet=\"x-pentax\" ph=\"オハナシイタダイタ[普通名詞]\">お話いただいた</vtml_phoneme><vtml_phoneme alphabet=\"x-pentax\" ph=\"ナイヨオデ[普通名詞]\">内容で</vtml_phoneme><vtml_pause time=\"100\"/>登録の確認ができませんでした。<vtml_phoneme alphabet=\"x-pentax\" ph=\"ココカラ/サキワ[普通名詞]\">ここから先は</vtml_phoneme><vtml_pause time=\"100\"/>担当者へ転送いたします。誠に恐れ入りますが、改めて、ご用件および<vtml_pause time=\"100\"/>お客様情報をお申し出ください。</vtml_speed>\n"
   },
   {
     "id": "営業時間確認4切電",
     "display_no": "3129",
     "status_checkpoint": "音声認識エラー時間外",
     "action": "LineOff",
-    "text": "お話いただいた内容で登録の確認ができませんでした。\n恐れ入りますが、現在営業時間外のため、再度おかけ直しください。また、おかけ直しの際には、納品書兼請求書に記載のあるお客様ナンバーやご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。\n"
+    "text": "<vtml_speed value=\"100\"><vtml_phoneme alphabet=\"x-pentax\" ph=\"オハナシイタダイタ[普通名詞]\">お話いただいた</vtml_phoneme><vtml_phoneme alphabet=\"x-pentax\" ph=\"ナイヨオデ[普通名詞]\">内容で</vtml_phoneme><vtml_pause time=\"200\"/>登録の確認ができませんでした。恐れ入りますが、現在<vtml_pause time=\"100\"/>営業時間外のため、再度おかけ直しください。また、おかけ直しの際には、<vtml_speed value=\"95\">納品書兼請求書</vtml_speed>に記載のある<vtml_pause time=\"100\"/>お客様ナンバーや<vtml_pause time=\"100\"/>ご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。</vtml_speed>\n"
   },
   {
-    "id": "郵便番号(照合あり)",
+    "id": "郵便番号(1)ヒアリング",
     "display_no": "4000",
     "status_checkpoint": "切断(郵便番号1)",
     "action": "Grammer",
@@ -149,8 +149,8 @@
       "Next": "三点確認1",
       "Error": "営業時間確認5"
     },
-    "text": "続いて、ご登録住所の郵便番号をお話しください。\n",
-    "retry_text": "音声を認識できませんでした。\nもう一度、ご登録の郵便番号をお話しください。\n",
+    "text": "<vtml_speed value=\"100\">続いて、ご登録住所の郵便番号をお話しください。</vtml_speed>",
+    "retry_text": "<vtml_speed value=\"100\">音声を認識できませんでした。もう一度、ご登録の郵便番号をお話しください。</vtml_speed>",
     "retry_over_text": ""
   },
   {
@@ -160,17 +160,17 @@
     "action": "OpTransfer",
     "number": "+819078252706",
     "timeout": 30,
-    "text": "音声を認識できませんでした。\nここから先は担当者へ転送いたします。\n誠に恐れ入りますが、改めて、ご用件およびお客様情報をお申し出ください。"
+    "text": "<vtml_speed value=\"100\">音声を認識できませんでした。<vtml_phoneme alphabet=\"x-pentax\" ph=\"ココカラ/サキワ[普通名詞]\">ここから先は</vtml_phoneme><vtml_pause time=\"100\"/>担当者へ転送いたします。誠に恐れ入りますが、改めて、ご用件および<vtml_pause time=\"100\"/>お客様情報をお申し出ください。</vtml_speed>\n"
   },
   {
     "id": "営業時間確認5切電",
     "display_no": "4009",
     "status_checkpoint": "音声認識エラー時間外",
     "action": "LineOff",
-    "text": "お話いただいた内容で登録の確認ができませんでした。\n恐れ入りますが、現在営業時間外のため、再度おかけ直しください。また、おかけ直しの際には、納品書兼請求書に記載のあるお客様ナンバーやご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。\n"
+    "text": "<vtml_speed value=\"100\">音声を認識できませんでした。恐れ入りますが、現在<vtml_pause time=\"200\"/>営業時間外のため<vtml_pause time=\"200\"/>再度おかけ直しください。また、おかけ直しの際には、<vtml_speed value=\"95\">納品書兼請求書</vtml_speed>に記載のある<vtml_pause time=\"100\"/>お客様ナンバーや<vtml_pause time=\"100\"/>ご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。</vtml_speed>\n"
   },
   {
-    "id": "郵便番号(照合なし)",
+    "id": "郵便番号(2)ヒアリング",
     "display_no": "4100",
     "status_checkpoint": "切断(郵便番号2)",
     "action": "Grammer",
@@ -181,8 +181,8 @@
       "Next": "生年月日登録確認",
       "Error": "営業時間確認6"
     },
-    "text": "続いて、ご登録の郵便番号をお話しください。\n",
-    "retry_text": "音声を認識できませんでした。\nもう一度、ご登録の郵便番号をお話しください。\n",
+    "text": "<vtml_speed value=\"100\">続いて、ご登録住所の郵便番号をお話しください。</vtml_speed>",
+    "retry_text": "<vtml_speed value=\"100\">音声を認識できませんでした。もう一度、ご登録の郵便番号をお話しください。</vtml_speed>",
     "retry_over_text": ""
   },
   {
@@ -192,14 +192,14 @@
     "action": "OpTransfer",
     "number": "+819078252706",
     "timeout": 30,
-    "text": "音声を認識できませんでした。\nここから先は担当者へ転送いたします。\n誠に恐れ入りますが、改めて、ご用件およびお客様情報をお申し出ください。\n\n"
+    "text": "<vtml_speed value=\"100\">音声を認識できませんでした。<vtml_phoneme alphabet=\"x-pentax\" ph=\"ココカラ/サキワ[普通名詞]\">ここから先は</vtml_phoneme><vtml_pause time=\"100\"/>担当者へ転送いたします。誠に恐れ入りますが、改めて、ご用件および<vtml_pause time=\"100\"/>お客様情報をお申し出ください。</vtml_speed>\n"
   },
   {
     "id": "営業時間確認6切電",
     "display_no": "4109",
     "status_checkpoint": "音声認識エラー時間外",
     "action": "LineOff",
-    "text": "音声を認識できませんでした。\n恐れ入りますが、現在営業時間外のため再度おかけ直しください。\nまた、おかけ直しの際には、納品書兼請求書に記載のあるお客様ナンバーやご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。\n"
+    "text": "<vtml_speed value=\"100\">音声を認識できませんでした。恐れ入りますが、現在<vtml_pause time=\"200\"/>営業時間外のため<vtml_pause time=\"200\"/>再度おかけ直しください。また、おかけ直しの際には、<vtml_speed value=\"95\">納品書兼請求書</vtml_speed>に記載のある<vtml_pause time=\"100\"/>お客様ナンバーや<vtml_pause time=\"100\"/>ご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。</vtml_speed>\n"
   },
   {
     "id": "登録確認NG転送",
@@ -208,14 +208,14 @@
     "action": "OpTransfer",
     "number": "+819078252706",
     "timeout": 30,
-    "text": "お話いただいた内容で登録の確認ができませんでした。\nここから先は担当者へ転送いたします。\n誠に恐れ入りますが、改めて、ご用件およびお客様情報をお申し出ください。\n"
+    "text": "<vtml_speed value=\"100\"><vtml_phoneme alphabet=\"x-pentax\" ph=\"オハナシイタダイタ[普通名詞]\">お話いただいた</vtml_phoneme><vtml_phoneme alphabet=\"x-pentax\" ph=\"ナイヨオデ[普通名詞]\">内容で</vtml_phoneme><vtml_pause time=\"100\"/>登録の確認ができませんでした。<vtml_phoneme alphabet=\"x-pentax\" ph=\"ココカラ/サキワ[普通名詞]\">ここから先は</vtml_phoneme><vtml_pause time=\"100\"/>担当者へ転送いたします。誠に恐れ入りますが、改めて、ご用件および<vtml_pause time=\"100\"/>お客様情報をお申し出ください。</vtml_speed>\n"
   },
   {
     "id": "登録確認NG切電",
     "display_no": "5009",
     "status_checkpoint": "特定NG時間外",
     "action": "LineOff",
-    "text": "お話いただいた内容で登録の確認ができませんでした。\n恐れ入りますが、現在営業時間外のため、再度おかけ直しください。また、おかけ直しの際には、納品書兼請求書に記載のあるお客様ナンバーやご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。\n"
+    "text": "<vtml_speed value=\"100\"><vtml_phoneme alphabet=\"x-pentax\" ph=\"オハナシイタダイタ[普通名詞]\">お話いただいた</vtml_phoneme><vtml_phoneme alphabet=\"x-pentax\" ph=\"ナイヨオデ[普通名詞]\">内容で</vtml_phoneme><vtml_pause time=\"200\"/>登録の確認ができませんでした。恐れ入りますが、現在<vtml_pause time=\"100\"/>営業時間外のため、再度おかけ直しください。また、おかけ直しの際には、<vtml_speed value=\"95\">納品書兼請求書</vtml_speed>に記載のある<vtml_pause time=\"100\"/>お客様ナンバーや<vtml_pause time=\"100\"/>ご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。</vtml_speed>\n"
   },
   {
     "id": "生年月日確認",
@@ -229,8 +229,8 @@
       "Next": "三点確認2",
       "Error": "営業時間確認7"
     },
-    "text": "続いて、ご契約者様の生年月日をお話しください。\n",
-    "retry_text": "音声を認識できませんでした。\nもう一度、ご契約者様の生年月日をお話しください。\n",
+    "text": "<vtml_speed value=\"100\">続いて、ご契約者様の生年月日を<vtml_pause time=\"100\"/>西暦でお話しください。</vtml_speed>",
+    "retry_text": "<vtml_speed value=\"100\">音声を認識できませんでした。もう一度、ご契約者様の生年月日を<vtml_pause time=\"100\"/>西暦でお話しください。</vtml_speed>",
     "retry_over_text": ""
   },
   {
@@ -240,14 +240,14 @@
     "action": "OpTransfer",
     "number": "+819078252706",
     "timeout": 30,
-    "text": "音声を認識できませんでした。\nここから先は担当者へ転送いたします。\n誠に恐れ入りますが、改めて、ご用件およびお客様情報をお申し出ください。\n"
+    "text": "<vtml_speed value=\"100\">音声を認識できませんでした。<vtml_phoneme alphabet=\"x-pentax\" ph=\"ココカラ/サキワ[普通名詞]\">ここから先は</vtml_phoneme><vtml_pause time=\"100\"/>担当者へ転送いたします。誠に恐れ入りますが、改めて、ご用件および<vtml_pause time=\"100\"/>お客様情報をお申し出ください。</vtml_speed>"
   },
   {
     "id": "営業時間確認7切電",
     "display_no": "5109",
     "status_checkpoint": "音声認識エラー時間外",
     "action": "LineOff",
-    "text": "音声を認識できませんでした。\n恐れ入りますが、現在営業時間外のため、再度おかけ直しください。また、おかけ直しの際には、納品書兼請求書に記載のあるお客様ナンバーやご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。\n"
+    "text": "<vtml_speed value=\"100\">音声を認識できませんでした。恐れ入りますが、現在<vtml_pause time=\"200\"/>営業時間外のため<vtml_pause time=\"200\"/>再度おかけ直しください。また、おかけ直しの際には、<vtml_speed value=\"95\">納品書兼請求書</vtml_speed>に記載のある<vtml_pause time=\"100\"/>お客様ナンバーや<vtml_pause time=\"100\"/>ご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。</vtml_speed>"
   },
   {
     "id": "名前確認",
@@ -261,8 +261,8 @@
       "Next": "三点確認3",
       "Error": "営業時間確認8"
     },
-    "text": "続いて、ご契約者様のお名前をお話しください。\n",
-    "retry_text": "音声を認識できませんでした。\nもう一度、ご契約者様のお名前をお話しください。\n",
+    "text": "<vtml_speed value=\"100\">続いて、ご契約者様のお名前をお話しください。</vtml_speed>",
+    "retry_text": "<vtml_speed value=\"100\">音声を認識できませんでした。もう一度、ご契約者様のお名前をお話しください。</vtml_speed>",
     "retry_over_text": ""
   },
   {
@@ -272,14 +272,14 @@
     "action": "OpTransfer",
     "number": "+819078252706",
     "timeout": 30,
-    "text": "音声を認識できませんでした。\nここから先は担当者へ転送いたします。\n誠に恐れ入りますが、改めて、ご用件およびお客様情報をお申し出ください。\n"
+    "text": "<vtml_speed value=\"100\">音声を認識できませんでした。<vtml_phoneme alphabet=\"x-pentax\" ph=\"ココカラ/サキワ[普通名詞]\">ここから先は</vtml_phoneme><vtml_pause time=\"100\"/>担当者へ転送いたします。誠に恐れ入りますが、改めて、ご用件および<vtml_pause time=\"100\"/>お客様情報をお申し出ください。</vtml_speed>\n"
   },
   {
     "id": "営業時間確認8切電",
     "display_no": "5209",
     "status_checkpoint": "音声認識エラー時間外",
     "action": "LineOff",
-    "text": "音声を認識できませんでした。\n恐れ入りますが、現在営業時間外のため、再度おかけ直しください。また、おかけ直しの際には、納品書兼請求書に記載のあるお客様ナンバーやご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。\n"
+    "text": "<vtml_speed value=\"100\">音声を認識できませんでした。恐れ入りますが、現在<vtml_pause time=\"200\"/>営業時間外のため<vtml_pause time=\"200\"/>再度おかけ直しください。また、おかけ直しの際には、<vtml_speed value=\"95\">納品書兼請求書</vtml_speed>に記載のある<vtml_pause time=\"100\"/>お客様ナンバーや<vtml_pause time=\"100\"/>ご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。</vtml_speed>\n"
   },
   {
     "id": "営業時間確認9転送",
@@ -288,14 +288,14 @@
     "action": "OpTransfer",
     "number": "+819078252706",
     "timeout": 30,
-    "text": "お話いただいた内容で登録の確認ができませんでした。\nここから先は担当者へ転送いたします。\n誠に恐れ入りますが、改めて、ご用件およびお客様情報をお申し出ください。\n"
+    "text": "<vtml_speed value=\"100\"><vtml_phoneme alphabet=\"x-pentax\" ph=\"オハナシイタダイタ[普通名詞]\">お話いただいた</vtml_phoneme><vtml_phoneme alphabet=\"x-pentax\" ph=\"ナイヨオデ[普通名詞]\">内容で</vtml_phoneme><vtml_pause time=\"100\"/>登録の確認ができませんでした。<vtml_phoneme alphabet=\"x-pentax\" ph=\"ココカラ/サキワ[普通名詞]\">ここから先は</vtml_phoneme><vtml_pause time=\"100\"/>担当者へ転送いたします。誠に恐れ入りますが、改めて、ご用件および<vtml_pause time=\"100\"/>お客様情報をお申し出ください。</vtml_speed>\n"
   },
   {
     "id": "営業時間確認9切電",
     "display_no": "5219",
     "status_checkpoint": "特定NG時間外",
     "action": "LineOff",
-    "text": "お話いただいた内容で登録の確認ができませんでした。\n恐れ入りますが、現在営業時間外のため、再度おかけ直しください。また、おかけ直しの際には、納品書兼請求書に記載のあるお客様ナンバーやご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。\n"
+    "text": "<vtml_speed value=\"100\"><vtml_phoneme alphabet=\"x-pentax\" ph=\"オハナシイタダイタ[普通名詞]\">お話いただいた</vtml_phoneme><vtml_phoneme alphabet=\"x-pentax\" ph=\"ナイヨオデ[普通名詞]\">内容で</vtml_phoneme><vtml_pause time=\"200\"/>登録の確認ができませんでした。恐れ入りますが、現在<vtml_pause time=\"100\"/>営業時間外のため、再度おかけ直しください。また、おかけ直しの際には、<vtml_speed value=\"95\">納品書兼請求書</vtml_speed>に記載のある<vtml_pause time=\"100\"/>お客様ナンバーや<vtml_pause time=\"100\"/>ご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。</vtml_speed>\n"
   },
   {
     "id": "自動受付不可転送",
@@ -304,14 +304,14 @@
     "action": "OpTransfer",
     "number": "+819078252706",
     "timeout": 30,
-    "text": "自動受付ができないため、担当者へ転送いたします。誠に恐れ入りますが、改めてご用件およびお客様情報をお申し出ください。\n"
+    "text": "<vtml_speed value=\"100\">自動受付ができないため、担当者へ転送いたします。誠に恐れ入りますが、改めて<vtml_pause time=\"100\"/>ご用件および<vtml_pause time=\"100\"/>お客様情報をお申し出ください。</vtml_speed>\n"
   },
   {
     "id": "自動受付不可切電",
     "display_no": "6009",
     "status_checkpoint": "受付NG時間外",
     "action": "LineOff",
-    "text": "自動受付ができない契約内容でございます。\n恐れ入りますが、現在営業時間外のため、再度8時30分～18時の間でおかけ直しください。\nお電話ありがとうございました。\n"
+    "text": "<vtml_speed value=\"100\">自動受付ができない契約内容でございます。恐れ入りますが、現在<vtml_pause time=\"100\"/>営業時間外のため、再度<vtml_pause time=\"100\"/>8時30分～<vtml_pause time=\"100\"/>18時の間で<vtml_pause time=\"100\"/>おかけ直しください。お電話ありがとうございました。</vtml_speed>\n"
   },
   {
     "id": "発送準備中1",
@@ -326,29 +326,22 @@
       "No": "発送準備中1キャンセル",
       "Error": "発送準備中1エラー"
     },
-    "text": "ご登録の確認ができました。\n次回、{最終チェック[next_exchange_date]}交換予定分は発送準備中のため、停止ができかねます。\nそのため、次回分の発送をもって、解約手続きをうけたまわります。\n解約すると、定期交換メンバー様の特典は無効となります。\nこのまま解約手続きを進めてよろしいですか。\n「はい」か「いいえ」でお話しください。",
-    "retry_text": "音声を認識できませんでした。\n",
+    "text": "<vtml_speed value=\"100\">ご登録の確認ができました。次回、{最終チェック[next_exchange_date]}<vtml_pause time=\"100\"/>交換予定分は<vtml_pause time=\"200\"/>発送準備中のため、停止ができかね<vtml_break level=\"0\"/>ます。そのため、次回分の発送をもって、解約手続きをうけたまわります。解約すると、定期交換メンバー様の特典は<vtml_pause time=\"200\"/>無効となります。このまま解約手続きを進めてよろしいですか?「はい」か<vtml_pause time=\"100\"/>「いいえ」でお話しください。</vtml_speed>",
+    "retry_text": "<vtml_speed value=\"100\">音声を認識できませんでした。</vtml_speed>",
     "retry_over_text": ""
   },
   {
     "id": "発送準備中1キャンセル",
     "display_no": "7119",
     "action": "LineOff",
-    "text": "それでは解約の受付を中止します。\n解約をご希望の際はフリーコールまでご連絡ください。\nお電話ありがとうございました。\n"
+    "text": "<vtml_speed value=\"100\">それでは<vtml_pause time=\"200\"/>解約の受付を中止します。解約をご希望の際は<vtml_pause time=\"200\"/>フリーコールまでご連絡ください。お電話ありがとうございました。</vtml_speed>"
   },
   {
     "id": "発送準備中1エラー",
     "display_no": "7129",
     "status_checkpoint": "音声認識エラー",
     "action": "LineOff",
-    "text": "音声を認識できませんでした。\nそのため、解約の受付を中止します。\n解約をご希望の際はフリーコールまでご連絡ください。\nお電話ありがとうございました。\n"
-  },
-  {
-    "id": "発送準備中1エンディング",
-    "display_no": "7199",
-    "status_checkpoint": "対応完了",
-    "action": "LineOff",
-    "text": "このお電話で解約の受付をいたしました。\n\n解約後の案内として、3点案内がございます。\n1つ目に、お引越し時には、蛇口から浄水カートリッジを取り外していただくようお願いいたします。\n2つ目に、「MeZutto takagi」にご登録のお客様は、解約後も引き続きご利用いただけます。\n不要な場合は、「MeZutto takagi（読み：ミズットタカギ）」から退会の手続きをお願いいたします。\n3つ目に、これまでご利用いただいた感謝として、引越し先でご検討しやすい後付けタイプの浄水器miniNeoを特別価格でご案内しております。\nパンフレットを郵送にて2週間程度でお送りしますので、引っ越し先でのご検討をお願いいたします。\n\n案内は、以上です。ここまでお時間をいただきありがとうございました。\nまた、これまで浄水器をご利用いただきありがとうございました。\n機会がございましたら、またのご利用をお待ちしております。\n"
+    "text": "<vtml_speed value=\"100\">音声を認識できませんでした。そのため、解約の受付を中止します。解約をご希望の際は<vtml_pause time=\"200\"/>フリーコールまでご連絡ください。お電話ありがとうございました。</vtml_speed>"
   },
   {
     "id": "発送準備中2",
@@ -363,29 +356,22 @@
       "No": "発送準備中2キャンセル",
       "Error": "発送準備中2エラー"
     },
-    "text": "ご登録の確認ができました。\n次回、{最終チェック[next_exchange_date]}交換予定分は発送準備中のため、停止ができかねます。\nそのため、次回分の発送をもって、定期お届けサービスの解約手続きをうけたまわります。\nこのまま解約手続きを進めてよろしいですか。\n「はい」か「いいえ」でお話しください。\n",
-    "retry_text": "音声を認識できませんでした。",
+    "text": "<vtml_speed value=\"100\">ご登録の確認ができました。次回、{最終チェック[next_exchange_date]}<vtml_pause time=\"100\"/>交換予定分は<vtml_pause time=\"200\"/>発送準備中のため、停止ができかね<vtml_break level=\"0\"/>ます。そのため、次回分の発送をもって、定期お届けサービスの<vtml_pause time=\"100\"/>解約手続きをうけたまわります。このまま<vtml_pause time=\"100\"/>解約手続きを進めてよろしいですか?「はい」か<vtml_pause time=\"100\"/>「いいえ」でお話しください。</vtml_speed>",
+    "retry_text": "<vtml_speed value=\"100\">音声を認識できませんでした。</vtml_speed>",
     "retry_over_text": ""
   },
   {
     "id": "発送準備中2キャンセル",
     "display_no": "7219",
     "action": "LineOff",
-    "text": "それでは解約の受付を中止します。\n解約をご希望の際はフリーコールまでご連絡ください。\nお電話ありがとうございました。\n"
+    "text": "<vtml_speed value=\"100\">それでは<vtml_pause time=\"200\"/>解約の受付を中止します。解約をご希望の際は<vtml_pause time=\"200\"/>フリーコールまでご連絡ください。お電話ありがとうございました。</vtml_speed>"
   },
   {
     "id": "発送準備中2エラー",
     "display_no": "7229",
     "status_checkpoint": "音声認識エラー",
     "action": "LineOff",
-    "text": "音声を認識できませんでした。\nそのため、解約の受付を中止します。\n解約をご希望の際はフリーコールまでご連絡ください。\nお電話ありがとうございました。\n"
-  },
-  {
-    "id": "発送準備中2エンディング",
-    "display_no": "7299",
-    "status_checkpoint": "対応完了",
-    "action": "LineOff",
-    "text": "このお電話で解約の受付をいたしました。\n\n解約後の案内として、3点案内がございます。\n1つ目に、お引越し時には、蛇口から浄水カートリッジを取り外していただくようお願いいたします。\n2つ目に、「MeZutto takagi」にご登録のお客様は、解約後も引き続きご利用いただけます。\n不要な場合は、「MeZutto takagi（読み：ミズットタカギ）」から退会の手続きをお願いいたします。\n3つ目に、これまでご利用いただいた感謝として、引越し先でご検討しやすい後付けタイプの浄水器miniNeoを特別価格でご案内しております。\nパンフレットを郵送にて2週間程度でお送りしますので、引っ越し先でのご検討をお願いいたします。\n\n案内は、以上です。ここまでお時間をいただきありがとうございました。\nまた、これまで浄水器をご利用いただきありがとうございました。\n機会がございましたら、またのご利用をお待ちしております。\n"
+    "text": "<vtml_speed value=\"100\">音声を認識できませんでした。そのため、解約の受付を中止します。解約をご希望の際は<vtml_pause time=\"200\"/>フリーコールまでご連絡ください。お電話ありがとうございました。</vtml_speed>\n"
   },
   {
     "id": "発送準備中3",
@@ -400,8 +386,8 @@
       "No": "営業時間確認10",
       "Error": "発送準備中3エラー1"
     },
-    "text": "ご登録の確認ができました。\nご利用の商品が後付けタイプの浄水器の場合、解約ではなく住所を変更し継続利用いただくことも可能でございます。\n解約のご案内でよろしいでしょうか。\n「はい」か「いいえ」でお話しください。\n",
-    "retry_text": "音声を認識できませんでした。\n",
+    "text": "<vtml_speed value=\"100\">ご登録の確認ができました。ご利用の商品が<vtml_pause time=\"200\"/>後付けタイプの浄水器の場合、解約ではなく<vtml_pause time=\"100\"/>住所を変更し<vtml_pause time=\"100\"/>継続利用いただくことも可能で<vtml_break level=\"0\"/>ございます。解約のご案内でよろしいでしょうか。「はい」か<vtml_pause time=\"100\"/>「いいえ」でお話しください。</vtml_speed>",
+    "retry_text": "<vtml_speed value=\"100\">音声を認識できませんでした。</vtml_speed>",
     "retry_over_text": ""
   },
   {
@@ -411,21 +397,21 @@
     "action": "OpTransfer",
     "number": "+819078252706",
     "timeout": 30,
-    "text": "ここから先は担当者へ転送いたします。\n誠に恐れ入りますが、改めて、ご用件およびお客様情報をお申し出ください。\n"
+    "text": "<vtml_speed value=\"100\">ここから<vtml_break level=\"0\"/>先は<vtml_pause time=\"200\"/>担当者へ転送いたします。誠に恐れ入りますが、改めて、ご用件および<vtml_pause time=\"100\"/>お客様情報をお申し出ください。</vtml_speed>\n"
   },
   {
     "id": "営業時間確認10切電",
     "display_no": "7319",
     "status_checkpoint": "mini利用時間外",
     "action": "LineOff",
-    "text": "恐れ入りますが、現在営業時間外のため、再度おかけ直しください。また、おかけ直しの際には、納品書兼請求書に記載のあるお客様ナンバーやご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。\n"
+    "text": "<vtml_speed value=\"100\">恐れ入りますが、現在<vtml_pause time=\"100\"/>営業時間外のため、再度おかけ直しください。また、おかけ直しの際には、<vtml_speed value=\"95\">納品書兼請求書</vtml_speed>に記載のある<vtml_pause time=\"100\"/>お客様ナンバーや<vtml_pause time=\"100\"/>ご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。</vtml_speed>\n"
   },
   {
     "id": "発送準備中3エラー1",
     "display_no": "7329",
     "status_checkpoint": "音声認識エラー",
     "action": "LineOff",
-    "text": "音声を認識できませんでした。\nそのため、解約の受付を中止します。\n解約をご希望の際はフリーコールまでご連絡ください。\nお電話ありがとうございました。\n"
+    "text": "<vtml_speed value=\"100\">音声を認識できませんでした。そのため、解約の受付を中止します。解約をご希望の際は<vtml_pause time=\"200\"/>フリーコールまでご連絡ください。お電話ありがとうございました。</vtml_speed>"
   },
   {
     "id": "発送準備中3追加確認",
@@ -439,15 +425,15 @@
       "No": "発送準備中3キャンセル",
       "Error": "発送準備中3エラー2"
     },
-    "text": "次回、{最終チェック[next_exchange_date]}交換予定分は発送準備中のため、停止ができかねます。\nそのため、次回分の発送をもって、定期お届けサービスの解約手続きをうけたまわります。\n解約すると、定期交換メンバー様の特典は無効となります。\nこのまま解約手続きを進めてよろしいですか。\n「はい」か「いいえ」でお話しください。\n",
-    "retry_text": "音声を認識できませんでした。\n",
-    "retry_over_text": ""
+    "text": "<vtml_speed value=\"100\">次回、{最終チェック[next_exchange_date]}<vtml_pause time=\"100\"/>交換予定分は<vtml_pause time=\"200\"/>発送準備中のため、停止ができかね<vtml_break level=\"0\"/>ます。そのため、次回分の発送をもって、定期お届けサービスの<vtml_pause time=\"100\"/>解約手続きをうけたまわります。解約すると、定期交換メンバー様の特典は<vtml_pause time=\"200\"/>無効となります。このまま解約手続きを進めてよろしいですか?「はい」か<vtml_pause time=\"100\"/>「いいえ」でお話しください。</vtml_speed>",
+    "retry_text": "<vtml_speed value=\"100\">音声を認識できませんでした。</vtml_speed>\n",
+    "retry_over_text": "<vtml_speed value=\"100\">音声を認識できませんでした。そのため、解約の受付を中止します。解約をご希望の際は<vtml_pause time=\"200\"/>フリーコールまでご連絡ください。お電話ありがとうございました。</vtml_speed>\n"
   },
   {
     "id": "発送準備中3キャンセル",
     "display_no": "7419",
     "action": "LineOff",
-    "text": "それでは解約の受付を中止します。\nお電話ありがとうございました。\n"
+    "text": "<vtml_speed value=\"100\">それでは<vtml_pause time=\"100\"/>解約の受付を中止します。お電話ありがとうございました。</vtml_speed>\n"
   },
   {
     "id": "発送準備中3エラー2",
@@ -455,13 +441,6 @@
     "status_checkpoint": "音声認識エラー",
     "action": "LineOff",
     "text": "音声を認識できませんでした。\nそのため、解約の受付を中止します。\n解約をご希望の際はフリーコールまでご連絡ください。\nお電話ありがとうございました。\n"
-  },
-  {
-    "id": "発送準備中3エンディング",
-    "display_no": "7499",
-    "status_checkpoint": "対応完了",
-    "action": "LineOff",
-    "text": "このお電話で解約の受付をいたしました。\n\n解約後の案内として、3点案内がございます。\n1つ目に、お引越し時には、蛇口から浄水カートリッジを取り外していただくようお願いいたします。\n2つ目に、「MeZutto takagi」にご登録のお客様は、解約後も引き続きご利用いただけます。\n不要な場合は、「MeZutto takagi（読み：ミズットタカギ）」から退会の手続きをお願いいたします。\n3つ目に、これまでご利用いただいた感謝として、引越し先でご検討しやすい後付けタイプの浄水器miniNeoを特別価格でご案内しております。\nパンフレットを郵送にて2週間程度でお送りしますので、引っ越し先でのご検討をお願いいたします。\n\n案内は、以上です。ここまでお時間をいただきありがとうございました。\nまた、これまで浄水器をご利用いただきありがとうございました。\n機会がございましたら、またのご利用をお待ちしております。\n"
   },
   {
     "id": "解約1",
@@ -476,30 +455,23 @@
       "No": "解約1キャンセル",
       "Error": "解約1エラー"
     },
-    "text": "ご登録の確認ができました。\n前回{最終チェック[previous_shipping_date]}発送分をもって、定期お届けサービスの解約をうけたまわります。\n解約すると、定期交換メンバー様の特典は無効となります。\nこのまま解約手続きを進めてよろしいですか。\n「はい」か「いいえ」でお話しください。\n",
-    "retry_text": "音声を認識できませんでした。\n",
+    "text": "<vtml_speed value=\"100\">ご登録の確認ができました。前回<vtml_pause time=\"100\"/>{最終チェック[previous_shipping_date]}<vtml_pause time=\"100\"/>発送分をもって、定期お届けサービスの解約を<vtml_pause time=\"100\"/>うけたまわります。解約すると、定期交換メンバー様の特典は<vtml_pause time=\"100\"/>無効となります。このまま解約手続きを進めてよろしいですか?「はい」か<vtml_pause time=\"100\"/>「いいえ」でお話しください。</vtml_speed>",
+    "retry_text": "<vtml_speed value=\"100\">音声を認識できませんでした。</vtml_speed>\n",
     "retry_over_text": ""
   },
   {
     "id": "解約1キャンセル",
     "display_no": "8019",
     "action": "LineOff",
-    "text": "それでは解約の受付を中止します。\n解約をご希望の際はフリーコールまでご連絡ください。\nお電話ありがとうございました。\n"
+    "text": "<vtml_speed value=\"100\">それでは<vtml_pause time=\"200\"/>解約の受付を中止します。解約をご希望の際は<vtml_pause time=\"200\"/>フリーコールまでご連絡ください。お電話ありがとうございました。</vtml_speed>\n"
   },
   {
     "id": "解約1エラー",
     "display_no": "8029",
     "status_checkpoint": "音声認識エラー",
     "action": "LineOff",
-    "text": "音声を認識できませんでした。\nそのため、解約の受付を中止します。\n解約をご希望の際はフリーコールまでご連絡ください。\nお電話ありがとうございました。\n",
+    "text": "<vtml_speed value=\"100\">音声を認識できませんでした。そのため、解約の受付を中止します。解約をご希望の際は<vtml_pause time=\"200\"/>フリーコールまでご連絡ください。お電話ありがとうございました。</vtml_speed>\n",
     "retry_text": ""
-  },
-  {
-    "id": "解約1エンディング",
-    "display_no": "8099",
-    "status_checkpoint": "対応完了",
-    "action": "LineOff",
-    "text": "このお電話で解約の受付をいたしました。\n\n解約後の案内として、3点案内がございます。\n1つ目に、お引越し時には、蛇口から浄水カートリッジを取り外していただくようお願いいたします。\n2つ目に、「MeZutto takagi」にご登録のお客様は、解約後も引き続きご利用いただけます。\n不要な場合は、「MeZutto takagi（読み：ミズットタカギ）」から退会の手続きをお願いいたします。\n3つ目に、これまでご利用いただいた感謝として、引越し先でご検討しやすい後付けタイプの浄水器miniNeoを特別価格でご案内しております。\nパンフレットを郵送にて2週間程度でお送りしますので、引っ越し先でのご検討をお願いいたします。\n\n案内は、以上です。ここまでお時間をいただきありがとうございました。\nまた、これまで浄水器をご利用いただきありがとうございました。\n機会がございましたら、またのご利用をお待ちしております。\n"
   },
   {
     "id": "解約2",
@@ -514,30 +486,23 @@
       "No": "解約2キャンセル",
       "Error": "解約2エラー"
     },
-    "text": "ご登録の確認ができました。\n前回{最終チェック[previous_shipping_date]}発送分をもって、定期お届けサービスの解約をうけたまわります。\nこのまま解約手続きを進めてよろしいですか。\n「はい」か「いいえ」でお話しください。\n",
-    "retry_text": "音声を認識できませんでした。\n",
+    "text": "<vtml_speed value=\"100\">ご登録の確認ができました。前回<vtml_pause time=\"100\"/>{最終チェック[previous_shipping_date]}<vtml_pause time=\"100\"/>発送分をもって、定期お届けサービスの解約を<vtml_pause time=\"100\"/>うけたまわります。このまま解約手続きを進めてよろしいですか?「はい」か<vtml_pause time=\"100\"/>「いいえ」でお話しください。</vtml_speed>",
+    "retry_text": "<vtml_speed value=\"100\">音声を認識できませんでした。</vtml_speed>\n",
     "retry_over_text": ""
   },
   {
     "id": "解約2キャンセル",
     "display_no": "8119",
     "action": "LineOff",
-    "text": "それでは解約の受付を中止します。\n解約をご希望の際はフリーコールまでご連絡ください。\nお電話ありがとうございました。\n"
+    "text": "<vtml_speed value=\"100\">それでは<vtml_pause time=\"200\"/>解約の受付を中止します。解約をご希望の際は<vtml_pause time=\"200\"/>フリーコールまでご連絡ください。お電話ありがとうございました。</vtml_speed>\n"
   },
   {
     "id": "解約2エラー",
     "display_no": "8129",
     "status_checkpoint": "音声認識エラー",
     "action": "LineOff",
-    "text": "音声を認識できませんでした。\nそのため、解約の受付を中止します。\n解約をご希望の際はフリーコールまでご連絡ください。\nお電話ありがとうございました。\n",
+    "text": "<vtml_speed value=\"100\">音声を認識できませんでした。そのため、解約の受付を中止します。解約をご希望の際は<vtml_pause time=\"200\"/>フリーコールまでご連絡ください。お電話ありがとうございました。</vtml_speed>\n",
     "retry_text": ""
-  },
-  {
-    "id": "解約2エンディング",
-    "display_no": "8199",
-    "status_checkpoint": "対応完了",
-    "action": "LineOff",
-    "text": "このお電話で解約の受付をいたしました。\n\n解約後の案内として、3点案内がございます。\n1つ目に、お引越し時には、蛇口から浄水カートリッジを取り外していただくようお願いいたします。\n2つ目に、「MeZutto takagi」にご登録のお客様は、解約後も引き続きご利用いただけます。\n不要な場合は、「MeZutto takagi（読み：ミズットタカギ）」から退会の手続きをお願いいたします。\n3つ目に、これまでご利用いただいた感謝として、引越し先でご検討しやすい後付けタイプの浄水器miniNeoを特別価格でご案内しております。\nパンフレットを郵送にて2週間程度でお送りしますので、引っ越し先でのご検討をお願いいたします。\n\n案内は、以上です。ここまでお時間をいただきありがとうございました。\nまた、これまで浄水器をご利用いただきありがとうございました。\n機会がございましたら、またのご利用をお待ちしております。\n"
   },
   {
     "id": "解約3",
@@ -552,8 +517,8 @@
       "No": "営業時間確認11",
       "Error": "解約3エラー1"
     },
-    "text": "ご登録の確認ができました。\nご利用の商品が後付けタイプの浄水器の場合、解約ではなく住所を変更し継続利用いただくことも可能でございます。\n解約のご案内でよろしいでしょうか。\n「はい」か「いいえ」でお話しください。\n",
-    "retry_text": "音声を認識できませんでした。\n",
+    "text": "<vtml_speed value=\"100\">ご登録の確認ができました。ご利用の商品が<vtml_pause time=\"200\"/>後付けタイプの浄水器の場合、解約ではなく<vtml_pause time=\"100\"/>住所を変更し<vtml_pause time=\"100\"/>継続利用いただくことも可能で<vtml_break level=\"0\"/>ございます。解約のご案内でよろしいでしょうか。「はい」か<vtml_pause time=\"100\"/>「いいえ」でお話しください。</vtml_speed>\n",
+    "retry_text": "<vtml_speed value=\"100\">音声を認識できませんでした。</vtml_speed>\n",
     "retry_over_text": ""
   },
   {
@@ -563,21 +528,21 @@
     "action": "OpTransfer",
     "number": "+819078252706",
     "timeout": 30,
-    "text": "ここから先は担当者へ転送いたします。\n誠に恐れ入りますが、改めて、ご用件およびお客様情報をお申し出ください。\n"
+    "text": "<vtml_speed value=\"100\">ここから<vtml_break level=\"0\"/>先は<vtml_pause time=\"200\"/>担当者へ転送いたします。誠に恐れ入りますが、改めて、ご用件および<vtml_pause time=\"100\"/>お客様情報をお申し出ください。</vtml_speed>\n"
   },
   {
     "id": "営業時間確認11切電",
     "display_no": "8219",
     "status_checkpoint": "mini利用時間外",
     "action": "LineOff",
-    "text": "恐れ入りますが、現在営業時間外のため、再度おかけ直しください。また、おかけ直しの際には、納品書兼請求書に記載のあるお客様ナンバーやご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。\n"
+    "text": "<vtml_speed value=\"100\">恐れ入りますが、現在<vtml_pause time=\"100\"/>営業時間外のため、再度おかけ直しください。また、おかけ直しの際には、<vtml_speed value=\"95\">納品書兼請求書</vtml_speed>に記載のある<vtml_pause time=\"100\"/>お客様ナンバーや<vtml_pause time=\"100\"/>ご契約情報を確認の上、ご連絡いただきますようお願いいたします。お電話ありがとうございました。</vtml_speed>\n"
   },
   {
     "id": "解約3エラー1",
     "display_no": "8229",
     "status_checkpoint": "音声認識エラー",
     "action": "LineOff",
-    "text": "音声を認識できませんでした。\nそのため、解約の受付を中止します。\n解約をご希望の際はフリーコールまでご連絡ください。\nお電話ありがとうございました。\n"
+    "text": "<vtml_speed value=\"100\">音声を認識できませんでした。そのため、解約の受付を中止します。解約をご希望の際は<vtml_pause time=\"200\"/>フリーコールまでご連絡ください。お電話ありがとうございました。</vtml_speed>\n"
   },
   {
     "id": "解約3追加確認",
@@ -591,29 +556,64 @@
       "No": "解約3キャンセル",
       "Error": "解約3エラー2"
     },
-    "text": "それでは、前回{最終チェック[previous_shipping_date]}発送分をもって、定期お届けサービスの解約をうけたまわります。\n解約すると、定期交換メンバー様の特典は無効となります。\nこのまま解約手続きを進めてよろしいですか。\n「はい」か「いいえ」でお話しください。\n",
-    "retry_text": "音声を認識できませんでした。\n",
+    "text": "<vtml_speed value=\"100\">それでは、前回<vtml_pause time=\"100\"/>{最終チェック[previous_shipping_date]}<vtml_pause time=\"100\"/>発送分をもって、定期お届けサービスの解約を<vtml_pause time=\"100\"/>うけたまわります。解約すると、定期交換メンバー様の特典は<vtml_pause time=\"100\"/>無効となります。このまま解約手続きを進めてよろしいですか?「はい」か<vtml_pause time=\"100\"/>「いいえ」でお話しください。</vtml_speed>",
+    "retry_text": "<vtml_speed value=\"100\">音声を認識できませんでした。</vtml_speed>\n",
     "retry_over_text": ""
   },
   {
     "id": "解約3キャンセル",
     "display_no": "8319",
     "action": "LineOff",
-    "text": "それでは解約の受付を中止します。\n解約をご希望の際はフリーコールまでご連絡ください。\nお電話ありがとうございました。\n"
+    "text": "<vtml_speed value=\"100\">それでは<vtml_pause time=\"200\"/>解約の受付を中止します。解約をご希望の際は<vtml_pause time=\"200\"/>フリーコールまでご連絡ください。お電話ありがとうございました。</vtml_speed>\n"
   },
   {
     "id": "解約3エラー2",
     "display_no": "8329",
     "status_checkpoint": "音声認識エラー",
     "action": "LineOff",
-    "text": "音声を認識できませんでした。\nそのため、解約の受付を中止します。\n解約をご希望の際はフリーコールまでご連絡ください。\nお電話ありがとうございました。\n"
+    "text": "<vtml_speed value=\"100\">音声を認識できませんでした。そのため、解約の受付を中止します。解約をご希望の際は<vtml_pause time=\"200\"/>フリーコールまでご連絡ください。お電話ありがとうございました。</vtml_speed>\n"
+  },
+  {
+    "id": "発送準備中1エンディング",
+    "display_no": "9000",
+    "status_checkpoint": "対応完了",
+    "action": "LineOff",
+    "text": "<vtml_speed value=\"100\">このお電話で<vtml_pause time=\"100\"/>解約の受付をいたしました。解約後の案内として、<vtml_phoneme alphabet=\"x-pentax\" ph=\"サ^ンテン[普通名詞]\">3点</vtml_phoneme><vtml_pause time=\"100\"/>案内がございます。<vtml_phoneme alphabet=\"x-pentax\" ph=\"ヒトツ/メ^ニ[普通名詞]\">1つ目に</vtml_phoneme>、お引越し時には、蛇口から<vtml_pause time=\"100\"/>浄水カートリッジを取り外していただくよう<vtml_pause time=\"100\"/>お願いいたします。2つ目に、<vtml_accent level=\"6\"><vtml_phoneme alphabet=\"x-pentax\" ph=\"ミ^ズット[普通名詞]\">ミズット</vtml_phoneme></vtml_accent>タカギにご登録のお客様は、解約後も<vtml_pause time=\"100\"/>引き続きご利用いただけます。不要な場合は、<vtml_accent level=\"6\"><vtml_phoneme alphabet=\"x-pentax\" ph=\"ミ^ズット[普通名詞]\">ミズット</vtml_phoneme></vtml_accent><vtml_phoneme alphabet=\"x-pentax\" ph=\"タカギカラ[普通名詞]\">タカギから</vtml_phoneme><vtml_pause time=\"100\"/>退会の手続きをお願いいたします。3つ目に、これまでご利用いただいた感謝として、引越し先でご検討しやすい<vtml_pause time=\"100\"/>後付けタイプの浄水器<vtml_pause time=\"200\"/>miniNeoを<vtml_pause time=\"100\"/>特別価格でご案内しております。パンフレットを郵送にて2週間程度でお送りしますので、引っ越し先での<vtml_break level=\"0\"/>ご検討をお願いいたします。案内は、以上です。ここまでお時間をいただき<vtml_pause time=\"100\"/>ありがとうございました。また、これまで浄水器をご利用いただき<vtml_pause time=\"100\"/>ありがとうございました。機会がございましたら、またのご利用をお待ちしております。</vtml_speed>\n"
+  },
+  {
+    "id": "発送準備中2エンディング",
+    "display_no": "9000",
+    "status_checkpoint": "対応完了",
+    "action": "LineOff",
+    "text": "<vtml_speed value=\"100\">このお電話で<vtml_pause time=\"100\"/>解約の受付をいたしました。解約後の案内として、<vtml_phoneme alphabet=\"x-pentax\" ph=\"サ^ンテン[普通名詞]\">3点</vtml_phoneme><vtml_pause time=\"100\"/>案内がございます。<vtml_phoneme alphabet=\"x-pentax\" ph=\"ヒトツ/メ^ニ[普通名詞]\">1つ目に</vtml_phoneme>、お引越し時には、蛇口から<vtml_pause time=\"100\"/>浄水カートリッジを取り外していただくよう<vtml_pause time=\"100\"/>お願いいたします。2つ目に、<vtml_accent level=\"6\"><vtml_phoneme alphabet=\"x-pentax\" ph=\"ミ^ズット[普通名詞]\">ミズット</vtml_phoneme></vtml_accent>タカギにご登録のお客様は、解約後も<vtml_pause time=\"100\"/>引き続きご利用いただけます。不要な場合は、<vtml_accent level=\"6\"><vtml_phoneme alphabet=\"x-pentax\" ph=\"ミ^ズット[普通名詞]\">ミズット</vtml_phoneme></vtml_accent><vtml_phoneme alphabet=\"x-pentax\" ph=\"タカギカラ[普通名詞]\">タカギから</vtml_phoneme><vtml_pause time=\"100\"/>退会の手続きをお願いいたします。3つ目に、これまでご利用いただいた感謝として、引越し先でご検討しやすい<vtml_pause time=\"100\"/>後付けタイプの浄水器<vtml_pause time=\"200\"/>miniNeoを<vtml_pause time=\"100\"/>特別価格でご案内しております。パンフレットを郵送にて2週間程度でお送りしますので、引っ越し先での<vtml_break level=\"0\"/>ご検討をお願いいたします。案内は、以上です。ここまでお時間をいただき<vtml_pause time=\"100\"/>ありがとうございました。また、これまで浄水器をご利用いただき<vtml_pause time=\"100\"/>ありがとうございました。機会がございましたら、またのご利用をお待ちしております。</vtml_speed>\n"
+  },
+  {
+    "id": "解約1エンディング",
+    "display_no": "9000",
+    "status_checkpoint": "対応完了",
+    "action": "LineOff",
+    "text": "<vtml_speed value=\"100\">このお電話で<vtml_pause time=\"100\"/>解約の受付をいたしました。解約後の案内として、<vtml_phoneme alphabet=\"x-pentax\" ph=\"サ^ンテン[普通名詞]\">3点</vtml_phoneme><vtml_pause time=\"100\"/>案内がございます。<vtml_phoneme alphabet=\"x-pentax\" ph=\"ヒトツ/メ^ニ[普通名詞]\">1つ目に</vtml_phoneme>、お引越し時には、蛇口から<vtml_pause time=\"100\"/>浄水カートリッジを取り外していただくよう<vtml_pause time=\"100\"/>お願いいたします。2つ目に、<vtml_accent level=\"6\"><vtml_phoneme alphabet=\"x-pentax\" ph=\"ミ^ズット[普通名詞]\">ミズット</vtml_phoneme></vtml_accent>タカギにご登録のお客様は、解約後も<vtml_pause time=\"100\"/>引き続きご利用いただけます。不要な場合は、<vtml_accent level=\"6\"><vtml_phoneme alphabet=\"x-pentax\" ph=\"ミ^ズット[普通名詞]\">ミズット</vtml_phoneme></vtml_accent><vtml_phoneme alphabet=\"x-pentax\" ph=\"タカギカラ[普通名詞]\">タカギから</vtml_phoneme><vtml_pause time=\"100\"/>退会の手続きをお願いいたします。3つ目に、これまでご利用いただいた感謝として、引越し先でご検討しやすい<vtml_pause time=\"100\"/>後付けタイプの浄水器<vtml_pause time=\"200\"/>miniNeoを<vtml_pause time=\"100\"/>特別価格でご案内しております。パンフレットを郵送にて2週間程度でお送りしますので、引っ越し先での<vtml_break level=\"0\"/>ご検討をお願いいたします。案内は、以上です。ここまでお時間をいただき<vtml_pause time=\"100\"/>ありがとうございました。また、これまで浄水器をご利用いただき<vtml_pause time=\"100\"/>ありがとうございました。機会がございましたら、またのご利用をお待ちしております。</vtml_speed>\n"
+  },
+  {
+    "id": "解約2エンディング",
+    "display_no": "9000",
+    "status_checkpoint": "対応完了",
+    "action": "LineOff",
+    "text": "<vtml_speed value=\"100\">このお電話で<vtml_pause time=\"100\"/>解約の受付をいたしました。解約後の案内として、<vtml_phoneme alphabet=\"x-pentax\" ph=\"サ^ンテン[普通名詞]\">3点</vtml_phoneme><vtml_pause time=\"100\"/>案内がございます。<vtml_phoneme alphabet=\"x-pentax\" ph=\"ヒトツ/メ^ニ[普通名詞]\">1つ目に</vtml_phoneme>、お引越し時には、蛇口から<vtml_pause time=\"100\"/>浄水カートリッジを取り外していただくよう<vtml_pause time=\"100\"/>お願いいたします。2つ目に、<vtml_accent level=\"6\"><vtml_phoneme alphabet=\"x-pentax\" ph=\"ミ^ズット[普通名詞]\">ミズット</vtml_phoneme></vtml_accent>タカギにご登録のお客様は、解約後も<vtml_pause time=\"100\"/>引き続きご利用いただけます。不要な場合は、<vtml_accent level=\"6\"><vtml_phoneme alphabet=\"x-pentax\" ph=\"ミ^ズット[普通名詞]\">ミズット</vtml_phoneme></vtml_accent><vtml_phoneme alphabet=\"x-pentax\" ph=\"タカギカラ[普通名詞]\">タカギから</vtml_phoneme><vtml_pause time=\"100\"/>退会の手続きをお願いいたします。3つ目に、これまでご利用いただいた感謝として、引越し先でご検討しやすい<vtml_pause time=\"100\"/>後付けタイプの浄水器<vtml_pause time=\"200\"/>miniNeoを<vtml_pause time=\"100\"/>特別価格でご案内しております。パンフレットを郵送にて2週間程度でお送りしますので、引っ越し先での<vtml_break level=\"0\"/>ご検討をお願いいたします。案内は、以上です。ここまでお時間をいただき<vtml_pause time=\"100\"/>ありがとうございました。また、これまで浄水器をご利用いただき<vtml_pause time=\"100\"/>ありがとうございました。機会がございましたら、またのご利用をお待ちしております。</vtml_speed>\n"
+  },
+  {
+    "id": "発送準備中3エンディング",
+    "display_no": "9001",
+    "status_checkpoint": "対応完了",
+    "action": "LineOff",
+    "text": "<vtml_speed value=\"100\">このお電話で<vtml_pause time=\"100\"/>解約の受付をいたしました。解約後の案内として、<vtml_phoneme alphabet=\"x-pentax\" ph=\"ニ^テン[普通名詞]\">2点</vtml_phoneme><vtml_pause time=\"100\"/>案内がございます。<vtml_phoneme alphabet=\"x-pentax\" ph=\"ヒトツ/メ^ニ[普通名詞]\">1つ目に</vtml_phoneme>、お引越し時には、蛇口から<vtml_pause time=\"100\"/>浄水器を取り外していただくよう<vtml_pause time=\"100\"/>お願いいたします。2つ目に、<vtml_accent level=\"6\"><vtml_phoneme alphabet=\"x-pentax\" ph=\"ミ^ズット[普通名詞]\">ミズット</vtml_phoneme></vtml_accent>タカギにご登録のお客様は、解約後も<vtml_pause time=\"100\"/>引き続きご利用いただけます。不要な場合は、<vtml_accent level=\"6\"><vtml_phoneme alphabet=\"x-pentax\" ph=\"ミ^ズット[普通名詞]\">ミズット</vtml_phoneme></vtml_accent><vtml_phoneme alphabet=\"x-pentax\" ph=\"タカギカラ[普通名詞]\">タカギから</vtml_phoneme><vtml_pause time=\"100\"/>退会の手続きをお願いいたします。案内は、以上です。ここまでお時間をいただき<vtml_pause time=\"100\"/>ありがとうございました。また、これまで浄水器をご利用いただき<vtml_pause time=\"100\"/>ありがとうございました。機会がございましたら、またのご利用をお待ちしております。</vtml_speed>\n"
   },
   {
     "id": "解約3エンディング",
-    "display_no": "8399",
+    "display_no": "9001",
     "status_checkpoint": "対応完了",
     "action": "LineOff",
-    "text": "このお電話で解約の受付をいたしました。\n\n解約後の案内として、3点案内がございます。\n1つ目に、お引越し時には、蛇口から浄水カートリッジを取り外していただくようお願いいたします。\n2つ目に、「MeZutto takagi」にご登録のお客様は、解約後も引き続きご利用いただけます。\n不要な場合は、「MeZutto takagi（読み：ミズットタカギ）」から退会の手続きをお願いいたします。\n3つ目に、これまでご利用いただいた感謝として、引越し先でご検討しやすい後付けタイプの浄水器miniNeoを特別価格でご案内しております。\nパンフレットを郵送にて2週間程度でお送りしますので、引っ越し先でのご検討をお願いいたします。\n\n案内は、以上です。ここまでお時間をいただきありがとうございました。\nまた、これまで浄水器をご利用いただきありがとうございました。\n機会がございましたら、またのご利用をお待ちしております。\n"
+    "text": "<vtml_speed value=\"100\">このお電話で<vtml_pause time=\"100\"/>解約の受付をいたしました。解約後の案内として、<vtml_phoneme alphabet=\"x-pentax\" ph=\"ニ^テン[普通名詞]\">2点</vtml_phoneme><vtml_pause time=\"100\"/>案内がございます。<vtml_phoneme alphabet=\"x-pentax\" ph=\"ヒトツ/メ^ニ[普通名詞]\">1つ目に</vtml_phoneme>、お引越し時には、蛇口から<vtml_pause time=\"100\"/>浄水器を取り外していただくよう<vtml_pause time=\"100\"/>お願いいたします。2つ目に、<vtml_accent level=\"6\"><vtml_phoneme alphabet=\"x-pentax\" ph=\"ミ^ズット[普通名詞]\">ミズット</vtml_phoneme></vtml_accent>タカギにご登録のお客様は、解約後も<vtml_pause time=\"100\"/>引き続きご利用いただけます。不要な場合は、<vtml_accent level=\"6\"><vtml_phoneme alphabet=\"x-pentax\" ph=\"ミ^ズット[普通名詞]\">ミズット</vtml_phoneme></vtml_accent><vtml_phoneme alphabet=\"x-pentax\" ph=\"タカギカラ[普通名詞]\">タカギから</vtml_phoneme><vtml_pause time=\"100\"/>退会の手続きをお願いいたします。案内は、以上です。ここまでお時間をいただき<vtml_pause time=\"100\"/>ありがとうございました。また、これまで浄水器をご利用いただき<vtml_pause time=\"100\"/>ありがとうございました。機会がございましたら、またのご利用をお待ちしております。</vtml_speed>\n"
   },
   {
     "id": "お客様ナンバー照合",
@@ -621,9 +621,9 @@
     "name": "TwilioCustomParts-TakagiCancel",
     "method": "custom:lambda",
     "branch": {
-      "Yes": "電話番号(照合あり)",
-      "No": "電話番号(照合なし)",
-      "Fail": "電話番号(照合なし)"
+      "Yes": "電話番号(1)ヒアリング",
+      "No": "電話番号(2)ヒアリング",
+      "Fail": "電話番号(2)ヒアリング"
     }
   },
   {
@@ -662,8 +662,8 @@
     "name": "TwilioCustomParts-TakagiCancel",
     "method": "custom:lambda",
     "branch": {
-      "Yes": "郵便番号(照合なし)",
-      "No": "電話番号(2回目)"
+      "Yes": "郵便番号(2)ヒアリング",
+      "No": "電話番号再ヒアリング"
     }
   },
   {
@@ -791,7 +791,7 @@
     "name": "TwilioCustomParts-TakagiCancel",
     "method": "custom:lambda",
     "branch": {
-      "Yes": "郵便番号(照合なし)",
+      "Yes": "郵便番号(2)ヒアリング",
       "No": "営業時間確認4"
     }
   },
